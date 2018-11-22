@@ -1,0 +1,431 @@
+Open Source
+NoSQL
+Cross-Platform 
+Schema less
+
+Document Oriented - BSON
+Collection ~ Table
+Document ~ Row
+-Key-value
+-Dynamic Schema
+
+mongod
+mongo
+_id 12 bytes hexadecimal number 
+-unique
+-first 4 bytes - current timestamp
+-next 3 bytes - machine id
+-next 2 bytes - process id
+-remaining 3 bytes - incremental value
+
+mongod.exe --dbpath ""C:\Users\daffodilsw\Desktop\DFG-2511\data""
+data\db
+mongo.exe
+
+use Database
+db
+show dbs
+db.name.save({})
+db.name.find({})
+db.name.insert({})
+db.dropDatabase()
+db.createCollection(name,options)
+show collections
+db.collection.drop()
+
+String
+Integer
+Boolean
+Double
+Min/Max
+Arrays
+Timestamp
+Object
+Null
+Symbol
+Date
+Object ID
+Binary data
+Code
+Regular expression
+
+insert()
+save()
+findOne()
+find().pretty() /1-Show 0-Hide
+update()
+save()
+remove()
+
+.limit()
+.skip() 
+.sort()
+.aggregate( 
+$and: [,]
+$or: [,]
+
+$gt:
+$set //multi:true
+
+ObjectId()
+.getTimestamp()
+
+mongodump --db database_name --collection collection_name --out  test.json
+
+mongorestore --db database_name path_to_bson_file
+
+mongoimport -d database -c collection --file test.json
+mongoexport -d databasrase -c collection -o test.json
+
+
+
+
+
+MongoDB
+written in C++
+Cross-Platform 
+Document Oriented 
+Binary JSON
+
+High Performance
+High Availability
+Easy Scalability
+
+Schemaless 
+
+Collection - Table
+Document - Row/Record
+Field - Col
+
+_id 
+12 bytes hexadecimal number
+unique
+first 4 bytes current timestamp, 
+next 3 bytes machine id, 
+next 2 bytes process id of MongoDB server and 
+remaining 3 bytes simple incremental VALUE.
+
+
+mongod.exe --dbpath ""
+mongod.exe --port 8090
+mongod.exe --bind-ip localhost,172.18.2.29
+
+mongo.exe
+
+use Database
+db
+show dbs
+db.dropDatabase()
+
+db.test.save({})
+db.test.find()
+
+C:\Program Files\MongoDB\Server\4.0\bin
+
+Mongoose
+Object Document Mapper (ODM)
+Abstraction at cost of performance
+Schemas to model
+
+MongoDB
+Native
+
+
+https://github.com/bugwheels94/mongoose-vs-mongodb
+
+
+
+User.create({},function(req,res))
+
+
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+module.exports = mongoose.model('User', new Schema({ 
+    name: String, 
+    password: String, 
+    admin: Boolean 
+}));
+
+  ODM/ORM
+Mongoose - MongoDB object model tool in asynchronous env
+npm install mongoose
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function() {
+});
+
+var Schema = new mongoose.Schema({
+ name: String
+});
+
+Schema.methods.func = function() {
+ var = this.name ? this.name : "";
+}
+//Compile model from schema
+var Compile = mongoose.model('Compile', Schema);
+
+var Model = new Compile({ name: ''});
+console.log(Model.name);
+Model.func();
+
+Model.save(function(err, Model) {
+ if(err) return console.error(err);
+ Model.func();
+});
+
+Compile.find(function(err, res ) {
+ if(err) return console.error(err);
+ console.log(res);
+});
+
+Compile.find(function({name: ''}, err, res) {
+});
+
+
+
+
+Schemas
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var user = new Schema({
+title : String, //{type: String}
+author: String,
+body: String,
+comments: [{ body: String, date: Date }],
+date: { type: Date, default: Date.now },
+hidden: Boolean,
+meta: {
+ votes: Number,
+ favs: Number
+}, { bufferCommands: false }
+});
+
+String
+Number
+Date
+Buffer
+Boolean
+Mixed: Schema.Types.Mixed,
+ObjectId Schema.Types.ObjectId, 
+Array: [type],
+Decimal128: Schema.Types.ObjectId, 
+Map
+
+nested:  {
+ next: {}
+}
+
+All
+---
+required: true
+default:
+select: true
+validate:
+get
+set
+alias
+
+Indexes
+---------
+index: true
+unique: true
+sparse: true
+
+String
+------
+lowercase: true;
+uppercase: true;
+trim: true;
+match:
+enum:
+minlength:
+maxlength:
+
+Number/Date
+---------------
+min:
+max:
+
+var Model = mongoose.model('Model', user)'
+var x = new Model;
+x.  = ;
+x.save(res);
+
+
+
+Connection
+========
+mongoose.connect('mongodb://localhost:27017/db');
+var Model = mongoose.model('Test', new Schema({name: String}));
+Model.findOne(function(error, result) {
+});
+
+Mongoose Buffering Mechanism
+Mongoose will not throw any errors by default if you use a model without connecting.
+
+
+
+
+
+Buffer
+mongoose.set('bufferCommands', false);
+
+const options = {
+user
+pass
+
+  useNewUrlParser: true,
+  autoIndex: false, // Don't build indexes
+  reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+  reconnectInterval: 500, // Reconnect every 500ms
+  poolSize: 10, // Maintain up to 10 socket connections
+  // If not connected, return errors immediately rather than waiting for reconnect
+  bufferMaxEntries: 0,
+  connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+  family: 4 // Use IPv4, skip trying IPv6
+};
+
+
+
+mongoose.connect(uri, options, function(error) {}
+);
+mongoose.connect(uri, options).then(
+  () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
+  err => { /** handle initial connection error */ }
+);
+
+
+
+// if connecting on the default mongoose connection
+mongoose.connect(..);
+mongoose.connection.on('error', handleError);
+
+// if connecting on a separate connection
+var conn = mongoose.createConnection(..);
+conn.on('error', handleError);
+
+
+
+
+Models - Constructor compiled from Schema - Instance is document
+var Model= mongoose.model('Model',schema);
+
+
+var Tank = mongoose.model('Tank', yourSchema);
+
+var small = new Tank({ size: 'small' });
+small.save(function (err) {
+  if (err) return handleError(err);
+  // saved!
+});
+
+// or
+
+Tank.create({ size: 'small' }, function (err, small) {
+  if (err) return handleError(err);
+  // saved!
+});
+
+// or, for inserting large batches of documents
+Tank.insertMany([{ size: 'small' }], function(err) {
+
+});
+
+
+Tank.find({},function(err, res) {
+})
+Tank.deleteOne({},function(err) {
+})
+Tank.updateOne({},{}.function(err,res) {
+})
+
+query.count({}, callback)
+query.where('','').count(function(err, count) {
+
+})
+save
+remove
+
+count 
+find 
+findOne
+findOneAndRemove
+findOneAndUpdate
+remove 
+update
+updateOne
+updateMany
+
+insertMany
+
+
+
+
+
+Model.deleteMany()
+Model.deleteOne()
+Model.find()
+Model.findById()
+Model.findByIdAndDelete()
+Model.findByIdAndRemove()
+Model.findByIdAndUpdate()
+Model.findOne()
+Model.findOneAndDelete()
+Model.findOneAndRemove()
+Model.findOneAndUpdate()
+Model.replaceOne()
+Model.updateMany()
+Model.updateOne()
+
+
+count
+update
+
+
+.limit
+.sort
+.where
+ 
+
+
+// File: ./models/somemodel.js
+
+//Require Mongoose
+var mongoose = require('mongoose');
+
+//Define a schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+    a_string          : String,
+    a_date            : Date,
+});
+
+//Export function to create "SomeModel" model class
+module.exports = mongoose.model('SomeModel', SomeModelSchema );
+
+//Create a SomeModel model just by requiring the module
+var SomeModel = require('../models/somemodel')
+
+// Use the SomeModel object (model) to find all SomeModel records
+SomeModel.find(callback_function);
+
+
+
+
+soldiers never fight beacuse they hate them 
+but beacuse they love back there country
+
+author: {type: Schema.Types.ObjectId, ref: 'Author', required: true},
+
+  });
+

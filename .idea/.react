@@ -1,0 +1,92 @@
+React.js
+->Front-end Library
+->Developed by Facebook in 2011
+->Building reusable UI components
+->Unidirectional data flow
+->JSX Javascript XML
+->Virtual DOM
+
+
+npm create-react-app name
+npm start
+npm run build
+-react-scripts
+-serve
+
+
+import React from 'react';
+
+import {testAction,thunkAction} from '../action';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+
+class Class extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+        console.log('constructor()');
+        console.log('props',props);
+        console.log('state',this.state);
+    }
+    /*
+    static getDerivedStateFromProps(props,state) {
+        console.log('getDerivedStateFromProps()');
+        console.log('props',props,'state',state);
+        return null;
+        //return {email: null};
+    }
+    */
+    UNSAFE_componentWillMount() {
+        console.log('UNSAFE_componentWillMount()');
+    }
+    componentDidMount() {
+        console.log('componentDidMount()');
+    }
+
+    UNSAFE_componentWillReceiveProps(newProps) {
+        console.log('UNSAFE_componentWillReceiveProps()',newProps);
+    }
+    shouldComponentUpdate(newProps, newState) {
+        console.log('shouldComponentUpdate()',newProps,' ',newState);
+        return true;
+    }
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
+        console.log('UNSAFE_componentWillUpdate()',nextProps,' ',nextState);
+    }
+    /*
+    getSnapshotBeforeUpdate(prevProps, prevState) { 
+        console.log('getSnapshotBeforeUpdate()',prevProps,' ',prevState);
+    }
+    */
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate()',prevProps,' ',prevState);
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount()');
+    }
+    componentDidCatch() {
+        console.log('componentDidCatch()');
+    }
+   
+   render() {
+        console.log('render()');
+        return(<div></div>);
+   }
+}
+
+function mapStateToProps(state, ownProps) {
+    console.log('mapStateToProps');
+    console.log('state',state);
+    return ({check1:state.test, 
+        check2:state.thunkTest});
+}
+function mapDispatchToProps(dispatch, ownProps) {
+    console.log('mapDispatchToProps');
+    console.log('dispatch',dispatch);
+    return bindActionCreators({testAction,thunkAction}, dispatch);
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

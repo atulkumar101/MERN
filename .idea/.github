@@ -1,0 +1,6 @@
+ <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>">Click here</a> to begin!</a>
+
+ https://developer.github.com/v3/guides/basics-of-authentication/
+
+ https://github.com/github/platform-samples/tree/master/api/javascript/es2015-nodejs/recipes
+

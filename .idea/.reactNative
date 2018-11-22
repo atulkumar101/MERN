@@ -1,0 +1,7 @@
+npm install -g react-native-cli
+react-native init name
+
+JAVA_HOME
+
+path /sdk/platform-tools
+react-native run android

@@ -1,0 +1,22 @@
+Node.js
+->Asynchronous 
+->Single Threaded
+->Non-blocking
+->Observer Pattern via event & callbacks
+
+-Open Source
+-Cross Platform
+-Runtime Environment
+Single-Threaded
+Asynchronous
+Google's V8 Engine
+Error-First Callbacks
+
+var http = require('http');
+
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('Hello World!');
+}).listen(8090);
+
+

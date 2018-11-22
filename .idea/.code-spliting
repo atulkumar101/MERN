@@ -1,0 +1,83 @@
+,
+        ["import-inspector", {
+          "serverSideRequirePath": true
+        }]
+          
+  
+  output: {
+    // `filename` provides a template for naming your bundles (remember to use `[name]`)
+    filename: '[name].bundle.js',
+    // `chunkFilename` provides a template for naming code-split bundles (optional)
+    chunkFilename: '[name].bundle.js',
+    // `path` is the folder where Webpack will place your bundles
+    path: './dist',
+    // `publicPath` is where Webpack will load your bundles from (optional)
+    publicPath: 'dist/'
+  }
+
+splitchunksplugin
+
+html-webpack-plugin
+extract-text-webpack-plugin
+mini-css-extract-plugin
+
+bundle-loader
+promise-loader
+
+
+<Async load={import('./Home')}/>
+
+
+import Loadable from 'react-loadable';
+
+function Loading(props) {
+  if (props.error) {
+    return <div>Error! <button onClick={ props.retry }>Retry</button></div>;
+  } else if (props.timedOut) {
+    return <div>Taking a long time... <button onClick={ props.retry }>Retry</button></div>;
+  } else if (props.pastDelay) {
+    return <div>Loading...</div>;
+  } else {
+    return null;
+  }
+}
+
+const LoadableOtherComponent = Loadable({
+  loader: () => import('./OtherComponent'),
+  loading: Loading,
+  delay: 200, // 0.2 seconds
+  timeout: 10000, // 10 seconds
+});
+
+//LoadableOtherComponent.preload();
+
+const MyComponent = () => (
+  <LoadableOtherComponent/>
+);
+
+
+
+
+
+
+
+const Loading = () => <div>Loading...</div>;
+
+const Home = Loadable({
+  loader: () => import('./routes/Home'),
+  loading: Loading,
+});
+
+const About = Loadable({
+  loader: () => import('./routes/About'),
+  loading: Loading,
+});
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Home}/>
+      <Route path="/about" component={About}/>
+    </Switch>
+  </Router>
+);

@@ -1,0 +1,201 @@
+Github
+------
+https://daringfireball.net/projects/markdown/syntax
+
+Blockchain
+----------
+https://www.hyperledger.org/projects/fabric
+https://www.redbooks.ibm.com/Redbooks.nsf/RedbookAbstracts/crse0401.html
+
+Tokenization
+------------
+
+Bookmark
+========
+Internet Corporation for Assigned Names & Numbers (ICANN)
+GoDaddy
+Hostgator
+GoogleDomains
+
+Mailnator
+DataRobot.com
+sci-hub.cc
+camelcamelcamel.com
+unroll.me
+accountkiller.com
+downforeveryoneorjustme.com
+hackertyper.net
+10minutemail.com
+www.kiddle.co
+Exif http://www.stolencamerafinder.com/
+https://search.google.com/test/mobile-friendly
+
+npm i -D
+npm i -S
+npm install --save-dev
+
+sudo apt-get update && sudo apt-get upgrade
+
+sudo dpkg -i .deb
+sudo apt-get install x
+sudo apt-get remove x
+sudo apt-get purge x
+
+sudo apt-get -f install
+sudo apt-get autoremove
+
+echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+Docs
+====
+https://docs.oracle.com/javase/8/docs/
+https://docs.python.org/3.5/index.html
+https://docs.python.org/3.5/tutorial/index.html
+
+Browser
+=======
+Chrome
+------
+sudo apt-get install google-chrome-stable
+google-chrome-stable
+
+Firefox/Safari
+--------------
+
+Editor
+======
+Atom
+----
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt update; 
+sudo apt install atom
+
+VSCode
+------
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install code # or code-insiders
+//sudo dpkg -i .deb
+
+Software
+========
+Git
+---
+sudo apt-get install git
+git --version
+
+Teamviewer
+----------
+
+Technology
+==========
+C++
+---
+sudo apt-get install g++
+gcc --version
+g++ --version
+//sudo apt-get install build-essential
+/*
+g++ -o ObjectName FileName.cpp 
+./ObjectName 
+*/
+
+Java
+----
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+java -version
+//apt-get install default-jdk
+
+Python
+------
+sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get update
+sudo apt-get install python3.6
+python --version
+python3 --version
+
+NodeJS
+------
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node --version
+
+
+Database
+========
+MySQL
+-----
+
+MongoDB
+-------
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+mongo --version
+mongod --version
+
+mongod --dbpath /home/daffomob-50/Desktop/DFG-2511/Mongo/db
+mongo --host 127.0.0.1:27017
+
+Extension
+---------
+#ReactJS
+https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+#Redux
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+#AngularJS
+https://chrome.google.com/webstore/detail/augury/elgalmkoelokbchhkhacckoklkejnhcd?hl=en
+#VueJS
+https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en
+#Postman
+https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
+#Wappalyzer
+https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg?hl=en
+#Lighthouse
+https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=en
+
+#Slack
+https://chrome.google.com/webstore/detail/slack/jeogkiiogjbmhklcnbgkdcjoioegiknm
+#Skype
+https://chrome.google.com/webstore/detail/lifbcibllhkdhoafpjfnlhfpfgnpldfl
+#Hangouts
+https://chrome.google.com/webstore/detail/google-hangouts/nckgahadagoaajjgafhacjanaoiihapd?hl=en
+#LinkedIn
+https://chrome.google.com/webstore/detail/linkedin-extension/meajfmicibjppdgbjfkpdikfjcflabpk?hl=en
+
+#Grammarly
+https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en
+#Dictionary
+https://chrome.google.com/webstore/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja
+#Translate
+https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb
+
+#CSSViewer
+https://chrome.google.com/webstore/detail/cssviewer/ggfgijbpiheegefliciemofobhmofgce
+#Dimensions
+https://chrome.google.com/webstore/detail/dimensions/baocaagndhipibgklemoalmkljaimfdj
+#ColorPick-EyeDropper
+https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg
+#WhatFont
+https://chrome.google.com/webstore/detail/whatfont/jabopobgcpjmedljpbcaablpmlmfcogm?hl=en
+#Web-Developer
+https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm
+
+#Vysor
+https://chrome.google.com/webstore/detail/vysor/gidgenkbbabolejbgbpnhbimgjbffefm
+#AD Block Plus
+https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
+#Google Calendar
+https://chrome.google.com/webstore/detail/google-calendar/gmbgaklkmjakoegficnlkhebmhkjfich?hl=en
+#Google Keep
+https://chrome.google.com/webstore/detail/google-keep-chrome-extens/lpcaedmchfhocbbapmcbpinfpgnhiddi?hl=en
+
+SmallPDF
+https://chrome.google.com/webstore/detail/smallpdf/ohfgljdgelakfkefopgklcohadegdpjf
+

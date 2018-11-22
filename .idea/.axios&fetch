@@ -1,0 +1,68 @@
+axios.post('/post', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  }); 
+  
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+
+fetch(url, {
+ method: "POST", 
+ mode: "cors" //no-cors cors same-origin
+ credentials: "same-origin" //include same-origin omit 
+ body: JSON.stringify(data).
+ headers: {
+ "Content-Type": "application/json"  //text/plain //application/x-www-form-urlencoded
+ "X-Custom-Header": 
+}
+}).then(handleErrors)
+.then(response => {
+  response.ok
+  //throw Error(response.statusText)
+  response.status
+  reponse.statusText
+  response.headers
+  response.url
+
+  response.text()
+  response.json()
+  response.formData()
+  response.blob() //URL.createObjectURL(object)
+  }, err=>err)
+.catch(error => console.log(error));
+
+resolve  HTTP error status but ok=false
+reject Network Failure or If anything prevented the request from completing (DNS lookup failure)
+
+
+var formData = new FormData();
+var fileField = document.querySelector("input[type='file']");
+
+formData.append('username', 'abc123');
+formData.append('avatar', fileField.files[0]);
+
+fetch('https://example.com/profile/avatar', {
+  method: 'PUT',
+  body: formData
+})
+.then(response => return response.json())
+.catch(error => console.error('Error:', error))
+.then(response => console.log('Success:', JSON.stringify(response)));
+
+
+fetch(myRequest).then(function(response) {
+  return response.blob();
+}).then(function(myBlob) {
+  var objectURL = URL.createObjectURL(myBlob);
+  myImage.src = objectURL;
+});

@@ -1,0 +1,282 @@
+Web Application Framework
+
+Mongoose
+
+curl -X POST "http://localhost:8090/post"
+
+
+//handling multipart/form-data
+npm install multer --save
+
+npm install morgan
+npm install pg
+
+npm install password-reset
+
+npm install express-fileupload
+
+ExpressJS - Web Framework
+-----------------------
+delete() 
+get()
+post()
+put()
+
+
+res.download()
+res.end()
+res.json()
+res.jsonp()
+res.redirect()
+res.render()
+res.send()
+res.sendFile()
+res.sendStatus()
+
+
+exports._;
+var=require('./');
+var._
+
+modules.exports = {};
+
+
+
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  res.send('Hello World!');
+});
+app.listen(8090, function() {
+  console.log('Example app listening on port 3000!');
+});
+
+
+var module=require('./module');
+app.use('/module',module);
+
+
+
+module.js
+var express=require('express');
+var router=express.Router();
+router.get('/',function(req,res) {
+res.send('');
+});
+module.exports=router;
+
+
+
+
+Middleware
+
+Stack
+FIFO order
+
+var middlewareFunction = function(req, res, next) {
+next();
+}
+app.use(middlewareFunction); //app.add()
+*route is optional
+*next() //if (!) left hanging
+
+body-parer
+cookie-parser
+cookie-session
+cors
+morgan
+multer
+//session
+timeout
+vhost
+
+passport
+
+app.use(express.static(''));
+app.use('/media',express.static(''));
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+app.use(bodyParser.json())
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
+
+
+//this works with older versions of  mongodb version ~ 2.2.33
+var MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb://localhost:27017/animals', function(err, db) {
+  if (err) throw err;
+
+  db.collection('mammals').find().toArray(function (err, result) {
+    if (err) throw err;
+
+    console.log(result);
+  });
+});
+
+
+//for mongodb version 3.0 and up
+let MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb://localhost:27017/animals', function(err, client){
+   if(err) throw err;
+   
+   let db = client.db('animals');
+   db.collection('mammals').find().toArray(function(err, result){
+     if(err) throw err;
+     console.log(result);
+     client.close();
+   });
+});
+
+
+Object Relational Mapper ORM
+data as objects or models
+
+response.render()
+
+
+
+
+
+
+
+//Load HTTP module
+const http = require("http");
+const hostname = '127.0.0.1';
+const port = 3000;
+
+//Create HTTP server and listen on port 3000 for requests
+const server = http.createServer((req, res) => {
+
+  //Set the response HTTP header with HTTP status and Content type
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+//listen for request on port 3000, and as a callback function have the port listened on logged
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+var favicon = require('serve-favicon')
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+package.json
+  "engines": {
+    "node": "8.9.1"
+  },
+4.0.0
+
+
+
+
+
+
+
+Object Data Model / Object Relational Model 
+-Javascript Objects mapped to Database
+-Slower
+
+MongoDB
+-Open Source
+-NoSQL 
+-Document-Oriented Data Model
+
+-Collection-Table
+-Documents-Row
+Mongoose
+-MongoDB Object Model Tool
+-Asynchronous Env
+
+//Import the mongoose module
+var mongoose = require('mongoose');
+
+//Set up default mongoose connection
+var mongoDB = 'mongodb://127.0.0.1/my_database';
+mongoose.connect(mongoDB);
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+//create additional connections
+mongoose.createConnection()
+
+mongoose.connection
+Models-Schema
+mongoose.model()
+
+
+//Require Mongoose
+var mongoose = require('mongoose');
+
+//Define a schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+    a_string: String,
+    a_date: Date
+});
+
+var schema = new Schema(
+{
+  name: String,
+  binary: Buffer,
+  living: Boolean,
+  updated: { type: Date, default: Date.now },
+  age: { type: Number, min: 18, max: 65, required: true },
+  mixed: Schema.Types.Mixed,
+  _someId: Schema.Types.ObjectId,
+  array: [],
+  ofString: [String], // You can also have an array of each of the other types too.
+  nested: { stuff: { type: String, lowercase: true, trim: true } }
+})
+
+
+    var breakfastSchema = new Schema({
+      eggs: {
+        type: Number,
+        min: [6, 'Too few eggs'],
+        max: 12,
+        required: [true, 'Why no eggs?']
+      },
+      drink: {
+        type: String,
+        enum: ['Coffee', 'Tea', 'Water',]
+      }
+    });
+//match
+//maxlength
+//minlength
+
+// Compile model from schema
+var SomeModel = mongoose.model('SomeModel', SomeModelSchema );
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+
+
+
+https://mongoosejs.com/docs/index.html
+
+https://github.com/mdn/express-locallibrary-tutorial
+

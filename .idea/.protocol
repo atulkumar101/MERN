@@ -1,0 +1,16 @@
+HTTP is stateless
+
+Web Services
+============
+
+SOAP
+-Simple Object Access Protocol
+-Protocol
+-XML
+eg JAX-WS
+
+REST
+-Representational State Transfer
+-Architectural Style
+-Stateless
+eg JAX-RS
