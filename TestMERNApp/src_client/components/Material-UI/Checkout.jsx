@@ -97,7 +97,8 @@ class Checkout extends React.Component {
 
     return (
       <React.Fragment>
-        <CssBaseline />
+        <CssBaseline /> 
+        {/*
         <AppBar position="absolute" color="default" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap>
@@ -105,6 +106,7 @@ class Checkout extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        */}
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">

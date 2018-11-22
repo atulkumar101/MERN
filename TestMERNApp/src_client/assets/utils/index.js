@@ -23,11 +23,6 @@ var onFailure = function(error) {
     console.log(error);
 };
 */
-
-export function check(){
-    console.log('check click') 
-}
-
 export function calculateTotalPrice(products) {
     let total=0;
     products.map(product => (
@@ -39,7 +34,7 @@ export function calculateTotalPrice(products) {
 
 export function calculateTotalPage(totalProduct) {
     const pageLimit=6;
-    return Math.ceil(parseInt(totalProduct)/pageLimit) > 0 ? Math.ceil(parseInt(totalProduct)/pageLimit) : 1;
+    return Math.ceil(parseInt(totalProduct)/pageLimit);
 }
 
 export function createPagination(page) {
@@ -51,8 +46,8 @@ export function createPagination(page) {
 }
 
 export function calculateTotalProduct(n, totalProduct) {
+    const pageLimit=6;
     let product=[];
-    const pageLimit=6
     for(let i=(n-1)*pageLimit,j=0; j<pageLimit && totalProduct[i]!==undefined; i++,j++) {
         product[j]=totalProduct[i];
     }

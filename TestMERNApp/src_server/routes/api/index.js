@@ -23,10 +23,12 @@ router.get('/product', (req,res) => {
     });
 });
 
-router.get('/test', (req,res) => {
-    Product.find({}, function(err,db){
+router.get('/pagination', (req,res) => {
+    const limit=parseInt(req.query.limit);
+    const skip=req.query.skip*limit;
+    Product.find({}, null, {skip:skip, limit:limit}, function(err,db) {
         if(err) throw err;
-        res.json(db);
+            res.status(200).json(db);
     });
 });
 
