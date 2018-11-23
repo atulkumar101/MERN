@@ -1,9 +1,12 @@
-import {PRODUCT_API, PRODUCT, FIND, SORT, FILTER} from '../../constant';
+import {PRODUCT_API, PRODUCT_TOKEN, PRODUCT, FIND, SORT, FILTER} from '../../constant';
 
 export const apiData = () => {
     return (dispatch,getState) => {
         fetch(PRODUCT_API, {
             method: "GET", 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${PRODUCT_TOKEN}`} 
         })
         .then(response => {
             if(!response.ok) {

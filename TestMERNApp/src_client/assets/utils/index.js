@@ -1,3 +1,5 @@
+import {PAGINATION_API, PRODUCT_TOKEN, PRODUCT_LIMIT} from '../../constant';
+
 /*
 var auth2;
 
@@ -33,8 +35,7 @@ export function calculateTotalPrice(products) {
 }
 
 export function calculateTotalPage(totalProduct) {
-    const pageLimit=6;
-    return Math.ceil(parseInt(totalProduct)/pageLimit);
+    return Math.ceil(parseInt(totalProduct)/PRODUCT_LIMIT);
 }
 
 export function createPagination(page) {
@@ -46,10 +47,40 @@ export function createPagination(page) {
 }
 
 export function calculateTotalProduct(n, totalProduct) {
-    const pageLimit=6;
     let product=[];
-    for(let i=(n-1)*pageLimit,j=0; j<pageLimit && totalProduct[i]!==undefined; i++,j++) {
+    for(let i=(n-1)*PRODUCT_LIMIT,j=0; j<PRODUCT_LIMIT && totalProduct[i]!==undefined; i++,j++) {
         product[j]=totalProduct[i];
     }
     return product;
+}
+
+export const loadMore = (skip) => {
+    fetch(`${PAGINATION_API}?skip=${skip}&limit=${PRODUCT_LIMIT}`, {
+        method: "GET", 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${PRODUCT_TOKEN}`} 
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw Error(response.url+" "+response.status+" "+response.statusText);
+        }
+        return response.json();
+        //response.text()
+        //response.json()
+        //response.formData()
+        //response.blob() //URL.createObjectURL(object)
+    }).then(res => {
+        let product=[];
+        res.forEach(prod => {
+            const {_id, name, price, rating, category, quantity, img, desc} = prod;
+            product.push({_id, name, price, rating, category, quantity, img, desc});
+        }) 
+        //dispatch(addProduct(product));
+        console.log(product);
+        return product;
+    }).catch(error => {
+        return error
+    });
+
 }

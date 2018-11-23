@@ -82,37 +82,44 @@ class ProductDetail extends Component {
                 */}
                 {this.props.product.update.map(
                         (prod, index) => {
-                            return (<div key={index} className="img-zoom-container">
-                                <img id="myimage" src={prod.img} />
-                                <div>{prod.name}</div>
-                                <div>{prod.price}</div>
-                                <div><PrintStar rating={prod.rating} /></div>
-                                <div>{prod.category}</div>
-                                <div>{prod.quantity>0?"Available":"Not Available"}</div>
-                                <div>{prod.desc}</div>                                
+                            return (<div key={index}>
+                                <div className="container">
+                                    <div className="img-zoom-container">
+                                        <img id="myimage" src={prod.img}/>
+                                    </div>
+                                    <div id="myresult" className="img-zoom-result"></div>
+                                </div>
+                                <div className="container">
+                                    <div>{prod.name}</div>
+                                    <div>{prod.price}</div>
+                                    <div><PrintStar rating={prod.rating} /></div>
+                                    <div>{prod.category}</div>
+                                    <div>{prod.quantity>0?"Available":"Not Available"}</div>
+                                    <div>{prod.desc}</div>                                
+                                </div>
                             </div>);
                         }
                 )}
-                <p><button type="button" onClick={()=> {
-                        //console.log("history",this.props.history);
-                        //console.log("location",this.props.location);
-                        //console.log("match",this.props.match);
-                        //console.log("staticContext",this.props.staticContext);
-                        this.props.addToCart(this.props.product.update);
-                        //this.props.history.push('/cart');
-                    }}>Add to Cart
-                </button></p> 
-                <p><button type="button" onClick={()=> {
-                        //console.log("history",this.props.history);
-                        //console.log("location",this.props.location);
-                        //console.log("match",this.props.match);
-                        //console.log("staticContext",this.props.staticContext);
-                        //this.props.addToCart(this.props.product.update);
-                        this.props.history.push('/cart');
-                    }}>Checkout
-                </button></p> 
-                <div id="myresult" className="img-zoom-result"></div>
-
+                <div className="container">
+                    <p><button type="button" onClick={()=> {
+                            //console.log("history",this.props.history);
+                            //console.log("location",this.props.location);
+                            //console.log("match",this.props.match);
+                            //console.log("staticContext",this.props.staticContext);
+                            this.props.addToCart(this.props.product.update);
+                            //this.props.history.push('/cart');
+                        }}>Add to Cart
+                    </button></p> 
+                    <p><button type="button" onClick={()=> {
+                            //console.log("history",this.props.history);
+                            //console.log("location",this.props.location);
+                            //console.log("match",this.props.match);
+                            //console.log("staticContext",this.props.staticContext);
+                            //this.props.addToCart(this.props.product.update);
+                            this.props.history.push('/cart');
+                        }}>Checkout
+                    </button></p> 
+                </div>
             </div>
         )
     }

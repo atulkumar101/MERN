@@ -27,14 +27,16 @@ const styles = theme => ({
 });
 
 class ReviewForm extends React.Component {
-  totalPrice() {
-        let total=0;
-        this.props.state.cart.products.map(product => (
-          total = total+product.price
-        ));
-        //console.log(total);
-        return total;
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      total: 0 
+    }
+  }
+  componentDidMount() {
+    const total = calculateTotalPrice(this.props.state.cart.products);
+    this.setState({total});
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -43,7 +45,6 @@ class ReviewForm extends React.Component {
           Order summary
         </Typography>
         <List disablePadding>
-        {console.log('check',this.props.state.cart.products)}
           {this.props.state.cart.products.map(product => (
             <ListItem className={classes.listItem} key={product.name}>
               <ListItemText primary={product.name} secondary={product.desc} />
@@ -53,7 +54,7 @@ class ReviewForm extends React.Component {
           <ListItem className={classes.listItem}>
             <ListItemText primary="Total" />
             <Typography variant="subtitle1" className={classes.total}>
-              ${() => calculateTotalPrice(this.props.state.cart.products)}
+              ${this.state.total}
             </Typography>
           </ListItem>
         </List>
@@ -62,7 +63,7 @@ class ReviewForm extends React.Component {
             <Typography variant="h6" gutterBottom className={classes.title}>
               Shipping
             </Typography>
-            <Typography gutterBottom>John Smith</Typography>
+            <Typography gutterBottom>Sarvesh Singh</Typography>
             <Typography gutterBottom>{addresses.join(', ')}</Typography>
           </Grid>
           <Grid item container direction="column" xs={12} sm={6}>

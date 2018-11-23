@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({extended: false}));
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-import config from '../../config/config.js';
+import * as config from '../../config/index.js';
 import { verifyGmail, verifyToken } from "../../utils";
 
 //import User from '../../models/User';

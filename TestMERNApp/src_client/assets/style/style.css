@@ -2,27 +2,39 @@
     color: orange;
 }
 
+.logo {
+    animation: logo-spin infinite 20s linear;
+    height: 25px;
+}
+
+@keyframes logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .img-zoom-container {
     position: relative;
+    width: 40%;
+    display: inline-block;
 }
- 
 #myimage {
-    width: 600px;/*300*/
-    height: auto;/*240*/
+    width: 300px;
+    height: auto;
 }
 .img-zoom-lens {
     position: absolute;
     border: 1px solid #d4d4d4;
     /*set the size of the lens:*/
-    width: 80px;/*40*/
-    height: 80px;/*40*/
+    width: 100px;/*40*/
+    height: 100px;/*40*/
 }
   
 .img-zoom-result {
+    float: right;
     border: 1px solid #d4d4d4;
     /*set the size of the result div:*/
-    width: 600px;/*300*/
-    height: 300px;/*300*/
+    width: 400px;
+    height: 400px;
 }
   
 * {

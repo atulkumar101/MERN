@@ -4,6 +4,9 @@ import '../../assets/style/index.css';
 
 import logo from '../../logo.svg';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 class Header extends React.Component {
     render() {
         return(
@@ -21,7 +24,7 @@ class Header extends React.Component {
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="javascript:void(0);">XYZWebSite</a>
+                            <a class="navbar-brand" href="javascript:void(0);"><img src={logo} className="logo" alt="logo" /></a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home');}}>Home</a></li>
@@ -38,7 +41,7 @@ class Header extends React.Component {
                             </div>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/cart');}}><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">5</span></a><br/></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/cart');}}><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">{this.props.cart.length}</span></a></li>
                             <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/login');}}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -55,4 +58,10 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+function mapStateToProps(state) {
+    return ({
+        cart: state.cart.products
+    });
+}
+
+export default connect(mapStateToProps)(Header);

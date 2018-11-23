@@ -52,16 +52,6 @@ class Pagination extends React.Component {
     render() {
         return(
             <div>
-                <ul class="pagination">
-                    <li><a href="javascript:void(0);" onClick ={() => this.pagination('Prev')}>Prev</a></li>
-                    {this.state.totalPage.map(
-                        (page, index) => {
-                               return <li key={index}><a href="javascript:void(0);" onClick ={() => this.pagination(page)} style={this.state.currentPage === page ? { backgroundColor: '#fdce09' } : null}>{page}</a></li>
-                        }
-                    )}
-                    <li><a href="javascript:void(0);" onClick ={() => this.pagination('Next')}>Next</a></li>
-                </ul>
-
                 <div className="container">{
                    //this.props.product.update.map(
                     this.state.product.map(
@@ -69,6 +59,17 @@ class Pagination extends React.Component {
                             return <ProductCard key={index} product={prod} history={this.props.history} />
                         }
                     )}
+                </div>
+                <div className="container">
+                    <ul class="pagination">
+                        <li><a href="javascript:void(0);" onClick ={() => this.pagination('Prev')}>Prev</a></li>
+                        {this.state.totalPage.map(
+                            (page, index) => {
+                                return <li key={index}><a href="javascript:void(0);" onClick ={() => this.pagination(page)} style={this.state.currentPage === page ? { backgroundColor: '#fdce09' } : null}>{page}</a></li>
+                            }
+                        )}
+                        <li><a href="javascript:void(0);" onClick ={() => this.pagination('Next')}>Next</a></li>
+                    </ul>
                 </div>
             </div>
         )

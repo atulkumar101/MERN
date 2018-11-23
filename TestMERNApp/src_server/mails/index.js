@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import schedule from "node-schedule";
 import dotenv from 'dotenv';
 dotenv.config(); //({path:''})
-import config from '../config/config.js'; 
+import * as config from '../config'; 
 
 
 const transporter = nodemailer.createTransport({
@@ -11,8 +11,6 @@ const transporter = nodemailer.createTransport({
 
       user: config.GMAIL_ID,
 
-      user: 'sarvesh.smcs2@gmail.com',
-
       pass: process.env.GMAIL_PASS || ''
     }
 });
@@ -20,7 +18,7 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
     from: 'Sarvesh Singh',
     to: 'sarvesh.singh@daffodilsw.com , sarvesh.singh18@hotmail.com',
-    subject: 'Sending Email using Node.js',
+    subject: 'Checkout Test',
     //text: 'That was easy!'
     html: '<h1>Welcome</h1><p>That was easy!</p>'
 };
@@ -34,8 +32,6 @@ const task = schedule.scheduleJob(date, function(){
         console.log(error);
     } else {
         console.log('Email Sent: ' + info.response);
-
-        console.log('Email sent: ' + info.response);
     }
     });
 });

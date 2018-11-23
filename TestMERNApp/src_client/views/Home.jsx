@@ -5,30 +5,50 @@ import {apiData} from '../redux/action/product';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {loadMore} from '../assets/utils';
+
 import ProductCard from '../components/Product/ProductCard';
 
 import Select from '../components/Select';
 import Pagination from '../components/Pagination';
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state= {
+            skip:0,
+            product:[]
+        }
+    }
     componentDidMount() {
         this.props.apiData();
+        const product = loadMore(this.state.skip);
+        this.setState(product);
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.skip !== prevState.skip) {
+            const product = loadMore(this.state.skip);
+            this.setState(product);
+        }
     }
     render() {
         return(
             <div>
                 <Select />
-                <Pagination />
-                {/*
+                <Pagination  {...this.props}/>
+                <button type="button" onClick={()=> {
+                    const skip=this.state.skip+1;
+                    this.setState({skip});
+                }}>Load More</button>
+                                
                 <div className="container">{
-                   //this.props.product.update.map(
-                    this.props.product.update.map(
+                    this.state.product.map(
                         (prod, index) => {
                             return <ProductCard key={index} product={prod} history={this.props.history} />
                         }
                     )}
                 </div>
-                */}
+                
             </div>
         )
     }

@@ -3,8 +3,10 @@ import bodyParser from 'body-parser';
 
 import index from '../../controllers/index';
 
+import jwt from 'jsonwebtoken'; 
+import * as config from '../../config/index.js';
 
-import config from './../../config/config.js';
+import { verifyToken } from '../../utils/index';
 
 var Connect = require("../../db/Connect");
 
@@ -16,55 +18,66 @@ router.use(bodyParser.text());
 router.use(bodyParser.urlencoded({extended: false}));
 
 //router.get('/ppp', index.author_list);
-router.get('/product', (req,res) => {
+
+const token = jwt.sign(config.PAYLOAD, config.SECRET, {
+    expiresIn: 86400 // expires in 24 hours
+});
+console.log(token);
+
+//localhost:8090/api/category?cat=
+router.get('/product', verifyToken, (req,res) => {
     Product.find({}, function(err,db){
         if(err) throw err;
         res.json(db);
     });
 });
 
-router.get('/pagination', (req,res) => {
-    const limit=parseInt(req.query.limit);
-    const skip=req.query.skip*limit;
-    Product.find({}, null, {skip:skip, limit:limit}, function(err,db) {
+//localhost:8090/api/category?cat=
+router.get('/category', verifyToken, (req,res) => {
+    const cat=req.query.cat;
+    console.log(cat);
+    Product.find({category:cat}, function(err,db){
         if(err) throw err;
-            res.status(200).json(db);
+        res.json(db);
     });
 });
 
+//localhost:8090/api/rating?rat= 
+router.get('/rating', verifyToken, (req,res) => {
+    const rat=parseInt(req.query.rat)-1;
+    console.log(rat);
+    Product.find({rating:{$gt:rat, $lt: 6} }, function(err,db){
+        if(err) throw err;
+        res.json(db);
+    });
+});
+
+//localhost:8090/api/price?order=-1 ASC
+//localhost:8090/api/price?order=1 DESC
+router.get('/price', verifyToken, (req,res) => {
+    const order=parseInt(req.query.order);
+    console.log(order);
+    Product.find({}, null, {sort: {price: order}}, function(err,db){
+        if(err) throw err;
+        res.json(db);
+    });
+});
+
+//localhost:8090/api/pagination?skip=&limit
+router.get('/pagination', verifyToken, (req,res) => {
+    const limit=parseInt(req.query.limit);
+    const skip=req.query.skip*limit;
+    console.log(limit, skip);
+    Product.find({}, null, {skip:skip, limit:limit}, function(err,db) {
+        if(err) throw err;
+        res.status(200).json(db);
+    });
+});
+
+router.get('/checkout', verifyToken, (req,res) => {
+    console.log('Checkout');
+});
 module.exports = router;
-
-
-/*
-var token = req.body.token || req.query.token || req.headers['x-access-token'];
-if (token) {
-  jwt.verify(token, app.get('Secret'), function(err, decoded) {      
-    if (err) {
-      return res.json({ success: false, message: 'Failed to authenticate token.' });    
-    } else {
-      // if everything is good, save to request for use in other routes
-      req.decoded = decoded;    
-      next();
-    }
-  });
-} else {
-  return res.status(403).send({ success: false, message: 'No token provided.' });
-}
-
-const payload = {
-  check:  true
-};
-
-var token = jwt.sign(payload, app.get('Secret'), {
-      expiresIn: 1440 // expires in 24 hours
-});
-
-
-res.json({
-  message: 'authentication done ',
-  token: token
-});
-*/
 
 /*
 let signin = {
