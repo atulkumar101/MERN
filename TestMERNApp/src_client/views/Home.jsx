@@ -11,6 +11,7 @@ import ProductCard from '../components/Product/ProductCard';
 
 import Select from '../components/Select';
 import Pagination from '../components/Pagination';
+import Test from '../HOC/Test';
 
 class Home extends React.Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class Home extends React.Component {
         return(
             <div>
                 <Select />
+                <Test data='test'/>
                 <Pagination  {...this.props}/>
                 <button type="button" onClick={()=> {
                     const skip=this.state.skip+1;
@@ -66,7 +68,6 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);
 
-//()=>check() import { check } from '../assets/utils';
 //this.props.thunkAction('okokokok');
 //this.props.dispatch(testAction('ssssssss'));
 

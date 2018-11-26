@@ -84,3 +84,49 @@ export const loadMore = (skip) => {
     });
 
 }
+
+
+
+
+/* 
+Promise.race([timeout(1000), fetchWrapper(url, options)])
+    .then(function(response) {console.log(response);})
+    .catch(function(error) {console.log(error);
+})
+
+function timeout(value) {
+ 	return new Promise(function(resolve, reject) {
+		setTimeout(function() {
+            reject(new Error('Sorry, Request Timed Out.'));
+        }, value);
+	})	
+}
+
+function fetchWrapper(url, options) {
+    var options = options || {};
+    //method: "GET", 
+    options.headers['Content-Type']='application/json';
+    options.headers['Authorization']=`Bearer ${PRODUCT_TOKEN}`;
+	return fetch(url, options)
+	.then(handleResponse);
+}
+
+function handleResponse(response) {
+	if(!response.ok) {
+		throw Error(response.url+" "+response.status+" "+response.statusText);	
+    }
+    return response.json();
+    //response.text()
+    //response.json()
+    //response.formData()
+    //response.blob() //URL.createObjectURL(object)
+}
+
+
+
+fetchWrapper('')
+.then((data) => {console.log(data);})
+.catch((error) => {console.log(error)});
+*/
+
+

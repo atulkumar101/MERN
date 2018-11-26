@@ -1,11 +1,16 @@
 import React  from 'react';
 
 class PrintStar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            arr : [1,2,3,4,5]
+        }
+    }
     render() {
-        let arr = [1,2,3,4,5];
         return (
-            <div>
-                {arr = arr.map((i,k)=>
+            <React.Fragment>
+                {this.state.arr.map((i,k)=>
                 {
                     if( this.props.rating >= i )
                         return <span key={k} className="fa fa-star checked"></span>;
@@ -13,7 +18,7 @@ class PrintStar extends React.Component {
                         return <span key={k} className="fa fa-star"></span>;
                 })
                 }
-            </div>
+            </React.Fragment>
         )
     }
 }

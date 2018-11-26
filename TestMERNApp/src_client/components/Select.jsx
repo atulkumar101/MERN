@@ -4,6 +4,8 @@ import {sortBy, filterBy} from '../redux/action/product';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import PrintStar from './PrintStar';
+
 class Select extends React.Component {
     constructor(props) {
         super(props);
@@ -15,38 +17,29 @@ class Select extends React.Component {
     render() {
         return(
             <div className="container">
-                <div class="dropdown" style={{float:'left'}}>
-                    <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By Price
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0);" onClick ={() => this.props.sortBy('ASC')}>Low to High</a></li>
-                        <li><a href="javascript:void(0);" onClick ={() => this.props.sortBy('DESC')}>High to Low</a></li>
-                    </ul>
-                </div>
-
-                <div class="dropdown" style={{float:'left'}}>
-                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Filter By Category
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        {this.state.category.map(
+                <select style={{float:'left'}} onChange={(event) => this.props.sortBy(event.target.value)}>
+                    <option value="*">SELECT By Price</option>
+                    <option value="ASC">Low to High</option>
+                    <option value="DESC">High to Low</option>
+                </select>
+        
+                <select style={{float:'left'}} onChange={(event) => this.props.filterBy(event.target.value)}>
+                    <option value="*">SELECT By Category</option>
+                    {this.state.category.map(
                             (cat, index) => {
-                                return <li key={index}><a href="javascript:void(0);" onClick ={() => this.props.filterBy(cat)}>{cat}</a></li>
+                                return <option key={index} value={cat}>{cat}</option>
                             }
-                        )}
-                    </ul>
-                </div>
-
-                <div class="dropdown" style={{float:'left'}}>
-                    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Filter By Star
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        {this.state.rating.map(
+                    )}
+                </select>
+    
+                <select style={{float:'left'}} onChange={(event) => this.props.filterBy(parseInt(event.target.value))}>
+                    <option value="*">SELECT By Rating</option>
+                    {this.state.rating.map(
                             (rat, index) => {
-                                return <li key={index}><a href="javascript:void(0);" onClick ={() => this.props.filterBy(rat)}>{rat} Star</a></li>
+                                return <option key={index} value={rat}>{rat} Star</option>
                             }
-                        )}
-                    </ul>
-                </div>
+                    )}
+                </select>
             </div> 
         )
     }
