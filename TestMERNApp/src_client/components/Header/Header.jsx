@@ -21,33 +21,33 @@ class Header extends React.Component {
             </div>
             */
            <div> 
-                <nav class="navbar navbar-inverse">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="javascript:void(0);"><img src={logo} className="logo" alt="logo" /></a>
+                <nav className="navbar navbar-inverse">
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <a className="navbar-brand" href="javascript:void(0);"><img src={logo} className="logo" alt="logo" /></a>
                         </div>
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home');}}>Home</a></li>
+                        <ul className="nav navbar-nav">
+                            <li className="active"><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home');}}>Home</a></li>
                             <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/admin');}}>Admin</a></li>
                         </ul>
-                        <form class="navbar-form navbar-left" action="/">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="search" />
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
-                                        <i class="glyphicon glyphicon-search"></i>
+                        <form className="navbar-form navbar-left" action="/">
+                            <div className="input-group">
+                                <input type="text" className="form-control" placeholder="Search" name="search" />
+                                <div className="input-group-btn">
+                                    <button className="btn btn-default" type="submit">
+                                        <i className="glyphicon glyphicon-search"></i>
                                     </button>
                                 </div>
                             </div>
                         </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/cart');}}><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">{this.props.cart.length}</span></a></li>
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/login');}}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/profile');}}>Profile</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/account');}}>Account</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/logout');}}>Logout</a></li>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/cart');}}><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></a></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/login');}}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>
+                                <ul className="dropdown-menu">
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/profile');}}>Profile</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/account');}}>Account</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/logout');}}>Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

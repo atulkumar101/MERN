@@ -13,16 +13,14 @@ var browserConfig = {
     filename: 'bundle.js',
     publicPath: '/'
   }, 
-  /*
   devServer: {
     host: "localhost",
     inline: true,
     //open: true,
     //hot: true,
     historyApiFallback: true,
-    port: 8090
+    port: 3000
   },
-  */
   module: {
     rules: [
       {  

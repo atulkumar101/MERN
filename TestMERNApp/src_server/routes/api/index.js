@@ -20,7 +20,7 @@ router.use(bodyParser.urlencoded({extended: false}));
 //router.get('/ppp', index.author_list);
 
 const token = jwt.sign(config.PAYLOAD, config.SECRET, {
-    expiresIn: 86400 // expires in 24 hours
+    //expiresIn: 86400 // expires in 24 hours
 });
 console.log(token);
 

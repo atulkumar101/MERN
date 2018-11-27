@@ -41,7 +41,7 @@ export function calculateTotalPage(totalProduct) {
 export function createPagination(page) {
     let totalPage=[];
     for(let i=1;i<=page;i++) {
-        totalPage[i]=i;
+        totalPage[i-1]=i;
     }
     return totalPage;
 }
@@ -77,7 +77,7 @@ export const loadMore = (skip) => {
             product.push({_id, name, price, rating, category, quantity, img, desc});
         }) 
         //dispatch(addProduct(product));
-        console.log(product);
+        console.log('LoadMore', product);
         return product;
     }).catch(error => {
         return error

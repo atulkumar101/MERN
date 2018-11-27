@@ -6,7 +6,7 @@ import Checkout from '../components/Material-UI/Checkout';
 import ProductDetail from "../components/Product/ProductDetail";
 
 import Home from "../views/Home";
-import AdminDashboard from '../layouts/AdminDashboard';
+
 
 const userRoutes = [
     {
@@ -50,12 +50,6 @@ const userRoutes = [
         name: "Logout",
         //icon: "pe-7s-graph",
         component: SignOut
-    },
-    {
-        path: "/admin",
-        name: "AdminPage",
-        //icon: "pe-7s-graph",
-        component: AdminDashboard
     },
     { 
         redirect: true, 

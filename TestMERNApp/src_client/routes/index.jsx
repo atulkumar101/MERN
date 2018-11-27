@@ -3,7 +3,7 @@ import AdminDashboard from "../layouts/AdminDashboard";
 
 const indexRoutes = [
     { 
-        path: "/", 
+        path: "/home", 
         name: "UserPage", 
         component: UserDashboard 
     }, 
