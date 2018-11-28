@@ -41,13 +41,13 @@ class Header extends React.Component {
                             </div>
                         </form>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/cart');}}><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></a></li>
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/login');}}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/cart');}}><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></a></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/login');}}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/profile');}}>Profile</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/account');}}>Account</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home/logout');}}>Logout</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/profile');}}>Profile</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/account');}}>Account</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/logout');}}>Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

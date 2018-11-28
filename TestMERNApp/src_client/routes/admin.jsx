@@ -1,11 +1,11 @@
-import SignIn from '../components/Material-UI/SignIn';
+import Admin from '../components/Material-UI/SignIn';
 
 const adminRoutes = [
     {
         path: "/admin",
         name: "Admin",
         //icon: "pe-7s-graph",
-        component: SignIn
+        component: Admin
     },
     { 
         redirect: true, 

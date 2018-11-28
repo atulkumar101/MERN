@@ -70,7 +70,7 @@ router.get('/pagination', verifyToken, (req,res) => {
     console.log(limit, skip);
     Product.find({}, null, {skip:skip, limit:limit}, function(err,db) {
         if(err) throw err;
-        res.status(200).json(db);
+        res.json(db);
     });
 });
 

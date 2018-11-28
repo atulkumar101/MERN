@@ -7,49 +7,48 @@ import ProductDetail from "../components/Product/ProductDetail";
 
 import Home from "../views/Home";
 
+import Admin from "../components/Material-UI/SignIn";
 
 const userRoutes = [
     {
         path: "/home",
         name: "Home",
-        //icon: "pe-7s-graph",
         component: Home
     },
     {
         path: "/product/:id",
         name: "Product",
-        //icon: "pe-7s-graph",
         component: ProductDetail
     },
     {
         path: "/profile",
         name: "Profile",
-        //icon: "pe-7s-graph",
         component: Profile
     },
     {
         path: "/account",
         name: "Account",
-        //icon: "pe-7s-graph",
         component: Account
     },
     {
         path: "/cart",
         name: "Cart",
-        //icon: "pe-7s-graph",
         component: Checkout
     },
     {
         path: "/login",
         name: "Login",
-        //icon: "pe-7s-graph",
         component: SignInUp
     },
     {
         path: "/logout",
         name: "Logout",
-        //icon: "pe-7s-graph",
         component: SignOut
+    },
+    {
+        path: "/admin", 
+        name: "Admin", 
+        component: Admin
     },
     { 
         redirect: true, 

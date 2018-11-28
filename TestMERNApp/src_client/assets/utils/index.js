@@ -55,22 +55,10 @@ export function calculateTotalProduct(n, totalProduct) {
 }
 
 export const loadMore = (skip) => {
-    fetch(`${PAGINATION_API}?skip=${skip}&limit=${PRODUCT_LIMIT}`, {
-        method: "GET", 
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${PRODUCT_TOKEN}`} 
-    })
-    .then(response => {
-        if(!response.ok) {
-            throw Error(response.url+" "+response.status+" "+response.statusText);
-        }
-        return response.json();
-        //response.text()
-        //response.json()
-        //response.formData()
-        //response.blob() //URL.createObjectURL(object)
-    }).then(res => {
+    const URL = `${PAGINATION_API}?skip=${skip}&limit=${PRODUCT_LIMIT}`; 
+    fetchWrapper(URL);
+    /*
+        then(res => {
         let product=[];
         res.forEach(prod => {
             const {_id, name, price, rating, category, quantity, img, desc} = prod;
@@ -82,39 +70,14 @@ export const loadMore = (skip) => {
     }).catch(error => {
         return error
     });
-
-}
-
-
-
-
-/* 
-Promise.race([timeout(1000), fetchWrapper(url, options)])
-    .then(function(response) {console.log(response);})
-    .catch(function(error) {console.log(error);
-})
-
-function timeout(value) {
- 	return new Promise(function(resolve, reject) {
-		setTimeout(function() {
-            reject(new Error('Sorry, Request Timed Out.'));
-        }, value);
-	})	
-}
-
-function fetchWrapper(url, options) {
-    var options = options || {};
-    //method: "GET", 
-    options.headers['Content-Type']='application/json';
-    options.headers['Authorization']=`Bearer ${PRODUCT_TOKEN}`;
-	return fetch(url, options)
-	.then(handleResponse);
+    */
 }
 
 function handleResponse(response) {
 	if(!response.ok) {
 		throw Error(response.url+" "+response.status+" "+response.statusText);	
     }
+    console.log(response);
     return response.json();
     //response.text()
     //response.json()
@@ -122,11 +85,33 @@ function handleResponse(response) {
     //response.blob() //URL.createObjectURL(object)
 }
 
+function fetchWrapper(url, options) {
+    options = options || {
+        method: "GET", 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${PRODUCT_TOKEN}`
+        } 
+    }
+    return fetch(url, options)
+    .then(handleResponse)
+    .then((data) => {console.log('LoadMore', data)})
+    .catch((error) => {console.log(error)});
+}
 
+/*
 
-fetchWrapper('')
-.then((data) => {console.log(data);})
-.catch((error) => {console.log(error)});
+function timeout(value) {
+ 	return new Promise(function(resolve, reject) {
+		setTimeout(function() {
+            reject(new Error('Sorry, Request Timed Out.'));
+        }, value);
+	})	
+} 
+Promise.race([timeout(1000), fetchWrapper(url, options)])
+    .then(function(response) {console.log(response);})
+    .catch(function(error) {console.log(error);
+})
 */
 
 
