@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --watch",
     "fix": "eslint  --fix .js",
-    "build": "webpack --watch",
     "start": "nodemon dist/server.js",
+    "build": "webpack --watch",
     "dev": "webpack-dev-server --open --hot"
   },
   "repository": {

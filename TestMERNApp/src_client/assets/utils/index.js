@@ -77,7 +77,8 @@ function handleResponse(response) {
 	if(!response.ok) {
 		throw Error(response.url+" "+response.status+" "+response.statusText);	
     }
-    console.log(response);
+    console.log('response', response);
+    console.log(response.headers.get('Content-Type')); 
     return response.json();
     //response.text()
     //response.json()

@@ -24,7 +24,7 @@ const token = jwt.sign(config.PAYLOAD, config.SECRET, {
 });
 console.log(token);
 
-//localhost:8090/api/category?cat=
+//localhost:8090/api/product
 router.get('/product', verifyToken, (req,res) => {
     Product.find({}, function(err,db){
         if(err) throw err;
@@ -59,27 +59,38 @@ router.get('/price', verifyToken, (req,res) => {
     console.log(order);
     Product.find({}, null, {sort: {price: order}}, function(err,db){
         if(err) throw err;
+        
+        //res.send(JSON.stringify(db));
         res.json(db);
     });
 });
 
-//localhost:8090/api/pagination?skip=&limit
+//localhost:8090/api/pagination?skip=&limit=
 router.get('/pagination', verifyToken, (req,res) => {
     const limit=parseInt(req.query.limit);
     const skip=req.query.skip*limit;
     console.log(limit, skip);
     Product.find({}, null, {skip:skip, limit:limit}, function(err,db) {
         if(err) throw err;
+        res.type('json'); 
+        //res.set('Content-Type', '');
+        //res.setHeader('Content-Type', 'application/json');
         res.json(db);
     });
 });
 
+//localhost:8090/api/checkout
 router.get('/checkout', verifyToken, (req,res) => {
     console.log('Checkout');
+    res.send('CHECKOUT');
 });
 module.exports = router;
 
 /*
+//res.type('json'); 
+//res.set('Content-Type', '');
+//res.setHeader('Content-Type', '');
+
 let signin = {
     "user": [
         {"email":"user1", "pass":"pass1"},
