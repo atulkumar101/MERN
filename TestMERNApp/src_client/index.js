@@ -23,6 +23,9 @@ store.subscribe(() => {
   localStorage.setItem('redux-store', JSON.stringify(store.getState()));
 })
 
+//import {apiData} from './redux/action/product';
+//store.dispatch(apiData()); 
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

@@ -1,14 +1,6 @@
 import React from 'react';
 
 class Pagination extends React.Component {
-    componentDidMount() {
-        console.log('Pagination props', this.props);
-    }
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.products !== prevProps.products) {
-            console.log('Update Pagination props', this.props);
-        }
-    }
     render() {
         return(
             <div>

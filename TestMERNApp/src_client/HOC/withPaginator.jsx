@@ -19,12 +19,12 @@ function withPaginator(WrappedComponent) {
         }
         componentDidMount() {
             this.calculatePagination();
-            console.log('withPaginator props',this.props);
+            //console.log('withPaginator props',this.props);
         }
         componentDidUpdate(prevProps, prevState) {
             if (this.props.product.update !== prevProps.product.update) {
                 this.calculatePagination();
-                console.log('Update withPaginator props',this.props);
+                //console.log('Update withPaginator props',this.props);
             }
         }
         calculatePagination() {

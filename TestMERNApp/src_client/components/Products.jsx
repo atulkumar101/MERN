@@ -4,14 +4,6 @@ import '../assets/style/style.css';
 import ProductCard from './Product/ProductCard'; 
 
 class Products extends React.Component {
-    componentDidMount() {
-        console.log('Product props', this.props);
-    }
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.products !== prevProps.products) {
-            console.log('Update Product props', this.props);
-        }
-    }
     render() {
         return(
             <div className="container">{

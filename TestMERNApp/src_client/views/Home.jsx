@@ -64,13 +64,14 @@ class Home extends React.Component {
     render() {
         return(
             <div>
+                {/*
                 <ProductsHOC {...this.props}/>
                 <PaginationHOC {...this.props}/>
-                
+                */}
                 <Select />
                 
                 <Products products={this.state.product} {...this.props}/>
-                <Pagination products={this.state.product} totalPage={this.state.totalPage} currentPage={this.state.currentPage} pagination={this.pagination} {...this.props}/>)
+                <Pagination products={this.state.product} totalPage={this.state.totalPage} currentPage={this.state.currentPage} pagination={this.pagination} {...this.props}/>
          
                 <button type="button" onClick={()=> {
                     const skip=this.state.skip+1;
@@ -80,7 +81,6 @@ class Home extends React.Component {
         )
     }
 }
-
 
 function mapStateToProps(state) {
     return ({

@@ -9,13 +9,15 @@ import {bindActionCreators} from 'redux';
 import PrintStar from '../PrintStar';
 
 class ProductDetail extends Component {
+    constructor(props) {
+        super(props);
+    }
     componentDidMount() {
-        //Initiate zoom effect:
-        this.imageZoom("myimage", "myresult");
-        this.props.findByID(this.props.match.params.id);
+        Promise.resolve(this.props.findByID(this.props.match.params.id))
+        .then(()=>this.imageZoom("myimage", "myresult"));
     }
 
-    imageZoom(imgID, resultID) {
+    imageZoom = (imgID, resultID) => {
         var img, lens, result, cx, cy;
         img = document.getElementById(imgID);
         result = document.getElementById(resultID);
