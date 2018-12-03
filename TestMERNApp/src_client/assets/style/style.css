@@ -167,6 +167,14 @@ h1 {
     -ms-transform: translate(-50%,-50%);
 }
 
+.sign_card {
+    height: 550px;
+    width: 500px;
+    text-align: center;
+    margin:0 auto;
+    border: 1px solid #C2C7D0;
+}
+
 /*img {border-radius: 5px 5px 0 0;}*/
 /*border-radius: 5px;*/
 /*Product*/
@@ -223,18 +231,7 @@ a {
 .desc {
     height: 60px;
 }
-.sign_container {
-  width: 1280px;
-  margin:0 auto;
-}
 
-.box {
-  height: 500px;
-  width: 450px;
-  padding: 0 40px 36px 40px;
-  margin : 0 415px 30px 415px;
-  border: 1px solid #C2C7D0;
-}
 /*Chip*/
 /*.chip {
     display: inline-block;

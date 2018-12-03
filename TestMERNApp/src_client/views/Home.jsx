@@ -4,7 +4,9 @@ import {apiData} from '../redux/action/product';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import { loadMore, calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/utils';
+import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/utils';
+
+import { loadMore } from '../assets/utils/fetch';
 
 import Select from '../components/Select';
 import Products from '../components/Products';

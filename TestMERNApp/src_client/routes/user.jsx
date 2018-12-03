@@ -1,6 +1,6 @@
 import Profile from "../components/User/Profile";
 import Account from "../components/User/Account";
-import SignInUp from "../components/User/SignIn";
+import SignInUp from "../components/User/SignInUp";
 import SignOut from "../components/User/SignOut";
 import Checkout from '../components/Material-UI/Checkout';
 import ProductDetail from "../components/Product/ProductDetail";

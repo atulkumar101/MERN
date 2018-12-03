@@ -1,65 +1,143 @@
 import  React, {Component} from 'react';
-import "../assets/style/style.css";
+import "../../assets/style/style.css";
 
-import SignIn from './Sign/SignIn';
-import SignUp from './Sign/SignUp';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 //import {Link} from 'react-router-dom';
 
-class Sign extends Component {
+import {login, register} from '../../assets/utils/fetch';
+class SignInUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      name: '',
+      email: '',
       password: '',
-      error: ''
+      error: '',
+      success: '',
+      warning: ''
     }
-    this.inpEmail = React.createRef();
-    this.inpPass = React.createRef();
+    this.onInputChange = this.onInputChange.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.signUp = this.signUp.bind(this);
+    //this.inpEmail = React.createRef();
+
   }
 
-  signOut() {
-      console.log('signOut()');
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
+  onInputChange(event) {
+    event.preventDefault();
+    const inputName = event.target.name;
+    const inputValue = event.target.value;
+    this.setState({ [inputName]: inputValue });
   }
 
   signIn() {
-    //event.preventDefault();
-
-    const {email,password} = this.state;
-    console.log('signin()');
-    console.log('',this.inpEmail,'',this.inpEmail.current);
+    /*
     this.inpEmail.current.focus();
-    //this.inpPass.current.focus();
+    this.props.history.push('/');
+    */
+    const {email, password} = this.state;
+    console.log('signIn()', email, password);
+    login(email, password) 
+    .then(res => {
+      console.log(res);
+      const success = res.auth;
+      console.log(success);
+      this.setState({success});
+    })
+    .catch(err => {
+      const error = err;
+      console.log(error);
+      this.setState({error});
+    });
+    //response.text()
+    //response.json()
+    //response.formData()
+    //response.blob() //URL.createObjectURL(object)
   }
   signUp() {
-    const {email,password} = this.state;
-    console.log('signup()');
+    const {name, email, password} = this.state;
+    console.log('signUp()', name, email, password);
+    register(name, email, password) 
+    .then(res => {
+      console.log(res);
+      const success = res.auth;
+      this.setState({success});
+    })
+    .catch(err => {
+      console.log(err);
+      const error = "Something Went Wrong !";
+      this.setState({error});
+    });
+    //response.text()
+    //response.json()
+    //response.formData()
+    //response.blob() //URL.createObjectURL(object)  
   }
 
   render() {
-    return (
-      <div className="sign_container">
-        <a href="#" onClick={()=> this.signOut()}>Sign out</a>
-		    <div className="box">
-          <ul className="nav nav-tabs">
-            <li style={{width:"50%"}}><a data-toggle="tab" href="#signup">Sign Up</a></li>
-            <li style={{width:"50%"}} className="active"><a data-toggle="tab" href="#signin">Sign In</a></li>
-          </ul>
-
-          <SignIn />
-          <SignUp />
-
-          {
-            //<Link to={'/sign'}>Instead</Link>
-          }
-          <div>{this.state.error}</div>
+    return (  
+      <div className="sign_card">
+        <ul className="nav nav-tabs">
+          <li style={{width:"50%"}}><a data-toggle="tab" href="#signup">Sign Up</a></li>
+          <li style={{width:"50%"}} className="active"><a data-toggle="tab" href="#signin">Sign In</a></li>
+        </ul>
+        
+        <div className="container tab-content">
+          <SignIn onInputChange={this.onInputChange} signIn={this.signIn} />
+          <SignUp onInputChange={this.onInputChange} signUp={this.signUp} /> 
         </div>
+        {
+            //has-success has feedback
+            //has-success
+            //<span className="glyphicon glyphicon-ok form-control-feedback"></span>
+            //has-warning
+            //<span className="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+            //has-error
+            //<span className="glyphicon glyphicon-remove form-control-feedback"></span>
+        }
+        {
+          this.state.warning 
+          ? (<div class="alert alert-warning alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{this.state.warning}</strong> 
+          </div>) 
+          : ''
+        }
+        {
+          this.state.error 
+          ? (<div class="alert alert-danger alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{this.state.error}</strong> 
+          </div>) 
+          : ''
+        }
+        {
+          this.state.success 
+          ? (<div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{this.state.success}</strong> 
+          </div>) 
+          : ''
+        }
+        <hr/>
+        <p>Or connect with:</p>
+        <button type="button" className="btn btn-default"
+            onClick={() => this.sign()}>Facebook</button>
+        <button type="button" className="btn btn-success"
+            onClick={() => this.sign()}>Github</button>
+        <button type="button" className="btn btn-danger"
+            onClick={() => this.sign()}>LinkedIn</button>
+        <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <br/>
+        <p>By signing in, you agree to our <a>Terms of Service</a> and <a>Privacy Policy</a>.</p>
+        {
+          //<a href="#" onClick={()=> this.signOut()}>Sign out</a>
+          //<Link to={'/sign'}>Instead</Link>
+        } 
       </div>
     );
   }
 }
 
-export default Sign;
+export default SignInUp;

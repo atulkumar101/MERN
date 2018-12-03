@@ -12,7 +12,9 @@ import bcrypt from 'bcryptjs';
 import * as config from '../../config/index.js';
 import { verifyGmail, verifyToken } from "../../utils";
 
-//import User from '../../models/User';
+
+var Connect = require("../../db/Connect");
+var User = require("../../models/User");
 
 /*
 import cookieParser from 'cookie-parser';
@@ -20,28 +22,51 @@ import session from 'express-session';
 
 router.use(cookieParser());
 router.use(session({
-    secret: key.SECRET,
-    cookie: { maxAge: 86400 },//24hrs //1000 * 60 * 60 * 24 * 30 Millisec 
+    secret: config.SECRET,
+    cookie: { maxAge: 86400 }, //1000 * 60 * 60 * 24 * 30 Millisec 
     saveUninitialized: true
 }));
 */
+
+
+router.post('/login', function(req, res) {
+    console.log('login', req.body);
+    User.findOne({ 
+        email: req.body.email 
+    }, 
+    function(err, user) {
+        if(err) 
+            return res.status(500).send('Server Error !');
+        if(!user) 
+            return res.status(404).send('User Not Found !');
+
+        const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+
+        if(!passwordIsValid) 
+            return res.status(401).json({auth: false, token: null});
+        
+        const token = jwt.sign({id:user._id}, config.SECRET, {/*expiresIn: 86400*/});
+        res.status(200).json({auth: true, token: token});
+    });
+});
+
+
 router.post('/register', function(req,res) {
-    
-    
-    
+    console.log('register',req.body);
+
     const hashedPassword = bcrypt.hashSync(req.body.password,8);
     
     User.create({
         name: req.body.name,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        type: 'local'
     }, 
     function(err, user) {
         if(err) 
-            return res.status(500).send('There was a problem in registering the user.')
-        
-        const token = jwt.sign({id:user._id}, key.SECRET, {expiresIn:86400});//24hrs
-        res.status(200).send({auth:true, token: token});
+            return res.status(500).send(err);
+        const token = jwt.sign({id:user._id}, config.SECRET, {/*expiresIn:86400*/});
+        res.status(200).json({auth: true, token: token});
     });
 });
 
@@ -62,12 +87,10 @@ router.post('/login-gmail', function (req,res) {
     verifyGmail(request)
     .then(()=>{
         //req.session.auth = {TokenID: request.TokenID};
-        console.log('Account Created');
-        res.status(200).send('Account Created');
+        res.status(200).send('Account Created !');
     })
     .catch(()=> {
-        console.log('Something Went Wrong');
-        res.status(404).send('Something Went Wrong');
+        res.status(404).send('Something Went Wrong !');
     });
 
     try {
@@ -106,28 +129,6 @@ router.get('/create-session', function (req, res) {
 router.get('/logout', function(req,res) {
     delete req.session.auth;
     res.status(200).send({auth: false, token: null});
-});
-
-
-
-
-
-
-router.post('/login', function(req, res) {
-    User.findOne({
-        email: req.body.email
-    }, function(err, user) {
-        if(err) 
-            return res.status(500).send('Error on the Server.');
-        if(!user) 
-            return res.status(404).send('No user found.');
-        const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if(!passwordIsValid) 
-            return res.status(401).send({ath: false, token: null});
-        
-        const token = jwt.sign({id:user._id}, key.SECRET, {expiresIn: 86400});//24hrs
-        res.status(200).send({auth:true, token: token});
-    });
 });
 
 module.exports = router;

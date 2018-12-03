@@ -1,21 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import index from '../../controllers/index';
-
-import jwt from 'jsonwebtoken'; 
-import * as config from '../../config/index.js';
-
-import { verifyToken } from '../../utils/index';
-
-var Connect = require("../../db/Connect");
-
-var Product = require("../../models/Product");
-
 const router = express.Router();
 router.use(bodyParser.json());
 router.use(bodyParser.text());
 router.use(bodyParser.urlencoded({extended: false}));
+
+import jwt from 'jsonwebtoken'; 
+
+import * as config from '../../config/index.js';
+import { verifyToken } from '../../utils/index';
+
+var Connect = require("../../db/Connect");
+var Product = require("../../models/Product");
+
+import index from '../../controllers/index';
 
 //router.get('/ppp', index.author_list);
 
@@ -27,6 +26,16 @@ console.log(token);
 //localhost:8090/api/product
 router.get('/product', verifyToken, (req,res) => {
     Product.find({}, function(err,db){
+        if(err) throw err;
+        res.json(db);
+    });
+});
+
+//localhost:8090/api/search?id=
+router.get('/search', verifyToken, (req,res) => {
+    const id=req.query.id;
+    console.log(id);
+    Product.findById(id, function(err,db){
         if(err) throw err;
         res.json(db);
     });

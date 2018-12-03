@@ -12,3 +12,9 @@ var salt = crypto.randomBytes(128).toString('hex');
 var salt = x.split('$')[2];
 
 req.session.auth =;
+
+
+
+1004491021554-gmcqucd7i3uqkrnnhsh1peamdg63rlk5.apps.googleusercontent.com
+
+496649971871-0tp7jjcqiabrl1a8uoalcutbpcfd6k82.apps.googleusercontent.com

@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import './style/style.css';
-
+//import {firebaseApp} from '../firebase';
 /*
 import Signout from './Signout';
 import {Link} from 'react-router';
 import {storageRef, databaseRef, firebaseApp} from '../firebase';
 */
+
+    /*
+    firebaseApp.auth().signInWithEmailAndPassword(email,password)
+    .catch(error=> {
+      this.setState({error: error})
+    });
+    */
+    //firebaseApp.auth().signOut();
+    /*
+    firebaseApp.auth().signInWithEmailAndPassword(email,password)
+    .catch(error=> {
+      this.setState({error: error})
+    });
+    */
 class App extends Component {
   constructor(props) {
     super(props);
@@ -189,12 +203,6 @@ user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
               onChange={event =>this.upload(event)
           }/>
         </form>
-        {this.state.error.message}
-        <button type="button" className="btn btn-primary"
-            onClick={()=>this.download()}>Download</button>
-        <button type="button" className="btn btn-primary"
-            onClick={()=>this.forgotPassword()}>Forgot Password</button>
-        {this.signOut()}
         <img src="" id="myimg" alt="gggg"/>
       </div>
     );
