@@ -36,17 +36,17 @@ router.post('/login', function(req, res) {
     }, 
     function(err, user) {
         if(err) 
-            return res.status(500).send('Server Error !');
+            return res.status(500).json({auth: false, err: err.errmsg});
         if(!user) 
-            return res.status(404).send('User Not Found !');
+            return res.status(404).json({auth: false, err: 'User Not Found !'});
 
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
         if(!passwordIsValid) 
-            return res.status(401).json({auth: false, token: null});
+            return res.status(401).json({auth: false, err: 'Password Not Valid !'});
         
         const token = jwt.sign({id:user._id}, config.SECRET, {/*expiresIn: 86400*/});
-        res.status(200).json({auth: true, token: token});
+        res.status(200).json({auth: true, msg:'Success', token: token});
     });
 });
 
@@ -64,27 +64,17 @@ router.post('/register', function(req,res) {
     }, 
     function(err, user) {
         if(err) 
-            return res.status(500).send(err);
+            return res.status(500).json({auth: false, err: err.errmsg});
         const token = jwt.sign({id:user._id}, config.SECRET, {/*expiresIn:86400*/});
-        res.status(200).json({auth: true, token: token});
+        res.status(200).json({auth: true, msg:'Success', token: token});
     });
 });
 
 
 
 
-router.post('/login-gmail', function (req,res) {
-    const request=req.body;
-    console.log('login-gmail');
-    //console.log("ID: " + request.ID); // Don't send this directly to your server!
-    //console.log('Full Name: ' + request.FullName);
-    //console.log('Given Name: ' + request.GivenName);
-    //console.log('Family Name: ' + request.FamilyName);
-    //console.log("Image URL: " + request.ImageUrl);
-    //console.log("Email: " + request.Email);
-    //console.log("ID Token: " + request.IDToken);
-
-    verifyGmail(request)
+router.post('/gmail', function (req,res) {
+    verifyGmail(req)
     .then(()=>{
         //req.session.auth = {TokenID: request.TokenID};
         res.status(200).send('Account Created !');
@@ -92,23 +82,21 @@ router.post('/login-gmail', function (req,res) {
     .catch(()=> {
         res.status(404).send('Something Went Wrong !');
     });
-
-    try {
-      //signin.user.push({"email":request.email, "pass":request.password});
-      //res.json(respond);      
-    }
-    catch(err) {
-    }
 });
 
 
-//router.get('/about-me',VerifyToken,function(req,res,next) {
-//    User.findById(req.userId, { /*password: 0*/ }, function (err, user) {
-//        if (err) return res.status(500).send("There was a problem finding the user.");
-//        if (!user) return res.status(404).send("No User Found.");
-//        res.status(200).send(user);
-//    });
-//});
+router.get('/profile',verifyToken,function(req,res,next) {
+    const id = req.decoded.id;
+    console.log(id);
+    User.findById(id, function (err, user) {
+        if (err) 
+            return res.status(500).send(err);
+        if (!user) 
+            return res.status(404).send("No User Found !");
+        
+        res.status(200).send(user);
+    });
+});
 
 
 router.get('/check-session', function (req, res) {

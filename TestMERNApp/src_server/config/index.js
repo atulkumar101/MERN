@@ -18,4 +18,4 @@ export const PAYLOAD={
 
 export const MONGO_URL= 'mongodb://127.0.0.1:27017/E-Commerce';
 export const GMAIL_ID= 'sarvesh.smcs2@gmail.com';
-export const Gmail_ClientID= '496649971871-a3033tt0aso5bnfofvvm3js71c2iknhb.apps.googleusercontent.com';
+export const GMAIL_ClientID= '496649971871-a3033tt0aso5bnfofvvm3js71c2iknhb.apps.googleusercontent.com';

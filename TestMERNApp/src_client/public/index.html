@@ -68,7 +68,7 @@
 
   <meta name="google-signin-scope" content="profile email">
 
-  <meta name="google-signin-client_id" content="496649971871-0tp7jjcqiabrl1a8uoalcutbpcfd6k82.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="496649971871-9qkbp38gr4vmg1mencueho6hpb0qqqdj.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   
 
@@ -83,55 +83,48 @@
   <div id="root"></div>
   
   <script>
+    
     function onSignIn(googleUser) {
-    console.log('onSignIn')
-    console.log('googleUser',googleUser);
-    // Useful data for your client-side scripts:
+    //console.log('googleUser',googleUser);
     var profile = googleUser.getBasicProfile();
+    
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     console.log('Full Name: ' + profile.getName());
     console.log('Given Name: ' + profile.getGivenName());
     console.log('Family Name: ' + profile.getFamilyName());
     console.log("Image URL: " + profile.getImageUrl());
     console.log("Email: " + profile.getEmail());
-
+    
     var id_token = googleUser.getAuthResponse().id_token;
+    
     console.log("ID Token: " + id_token);
 
-
-    fetch('http://localhost:8090/login-gmail',{
+    fetch('http://localhost:8090/auth/gmail',{
         method: 'post',
         headers: {
-        'Accept': 'application/json, application/x-www-form-urlencoded, text/plain, */*',
-        'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            /*params: {
-            ID: 12345
-            }*/
-            //ID: profile.getId(),
-            //FullName: profile.getName(),
-            //GivenName: profile.getGivenName(),
-            //FamilyName: profile.getFamilyName(),
-            //ImageUrl: profile.getImageUrl(),
-            //Email: profile.getEmail(),
             IDToken: id_token
         })
     })
     .then(function (response) {
-        console.log(response.status);
         if (!response.ok) {
-            throw Error(response.statusText);
+            throw response;
         }
         return response;
     })
-    .then(function (response) {
-        console.log(response.text());
+    .then(function (text) {
+        return text.text();
+    })
+    .then(function (res) {
+        console.log(res);
     })
     .catch(function (error) {
         console.log(error);
     }); 
     };
+
   </script>
   <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
   

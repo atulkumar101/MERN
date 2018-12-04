@@ -1,4 +1,39 @@
-import {SIGNIN_API, SIGNUP_API, PAGINATION_API, PRODUCT_TOKEN, PRODUCT_LIMIT} from '../../constant';
+import {SIGNIN_API, SIGNUP_API, PROFILE_API, PAGINATION_API, PRODUCT_TOKEN, PRODUCT_LIMIT} from '../../constant';
+import {getLocalStorage} from '../../assets/utils/cookie';
+
+  
+export function onSignIn(googleUser) {
+    //console.log('googleUser',googleUser);
+    var profile = googleUser.getBasicProfile();
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+
+    fetch('http://localhost:8090/login-gmail',{
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ IDToken: id_token })
+    })
+    .then(function (response) {
+        if (!response.ok) {
+            throw response;
+        }
+        return response;
+    })
+    .then(function (response) {
+        console.log(response.text());
+    })
+    .catch(function (error) {
+        console.log(error);
+    }); 
+};
 
 export const login = (email, password) => {
         return fetch(SIGNIN_API, {
@@ -12,11 +47,13 @@ export const login = (email, password) => {
         })
         .then(response => {
             if(!response.ok) {
-                throw Error(response.url+" "+response.status+" "+response.statusText+" "+response);	
+                return response.json().then(error => {throw (error.err)});
             }
-            return response.json();
+            return response.json().then(success => success.token);
         })
 }
+
+
 
 export const register = (name, email, password) => {
         return fetch(SIGNUP_API, {
@@ -30,10 +67,28 @@ export const register = (name, email, password) => {
         })
         .then(response => {
             if(!response.ok) {
-                throw Error(response.url+" "+response.status+" "+response.statusText+" "+response);	
+                return response.json().then(error => {throw (error.err)});
             }
-            return response.json();
+            return response.json().then(success => success.token);
         })
+}
+
+export const profile = () => {
+    const AUTH_TOKEN = getLocalStorage();
+    console.log('profile',AUTH_TOKEN);
+    return fetch(PROFILE_API, {
+        method: "GET", 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${AUTH_TOKEN}`
+        },
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw response;
+        }
+        return response.json();
+    });
 }
 
 export const loadMore = (skip) => {
@@ -55,6 +110,8 @@ export const loadMore = (skip) => {
     */
 }
 
+
+
 function handleResponse(response) {
 	if(!response.ok) {
 		throw Error(response.url+" "+response.status+" "+response.statusText+" "+response);	
@@ -62,10 +119,6 @@ function handleResponse(response) {
     console.log('response', response);
     console.log(response.headers.get('Content-Type'));
     return response.json();
-    //response.text()
-    //response.json()
-    //response.formData()
-    //response.blob() //URL.createObjectURL(object)
 }
 
 function fetchWrapper(url, options) {
@@ -79,7 +132,7 @@ function fetchWrapper(url, options) {
     return fetch(url, options)
     .then(handleResponse)
     .then((data) => {console.log('LoadMore', data)})
-    .catch((error) => {console.log(error)});
+    .catch((error) => {console.log('LoadMore', error)});
 }
 
 /*
@@ -122,3 +175,10 @@ var onFailure = function(error) {
     console.log(error);
 };
 */
+
+
+
+   //response.text()
+    //response.json()
+    //response.formData()
+    //response.blob() //URL.createObjectURL(object)
