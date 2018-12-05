@@ -1,0 +1,143 @@
+<!--
+ 			<video poster="http://www.bidgely.com/wp-content/uploads/2017/05/EU_Home_Marquee_1440x571.png" autoplay muted loop id="myVideo">
+				<source src="images/video.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+			</video>
+-->
+	<div class="w3-content w3-margin-top" style="max-width:1400px;">
+		<div class="w3-row-padding">
+			<div class="w3-third">
+				<div class="w3-white w3-text-grey w3-card-4">
+
+					<div class="w3-display-container">
+						<img src="images/Sarvesh.jpg" style="width:100%" alt="Sarvesh">
+					</div>
+
+					<div class="w3-container">
+						<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Student</p>
+						<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>ABESEC, Ghaziabad</p>
+						<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>sarvesh.singh18@hotmail.com</p>
+						<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>+91-9454777897</p>
+						<hr>
+
+						<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+
+							<p>C++</p>
+							<div class="w3-light-grey w3-round-xlarge w3-small">
+								<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>
+							</div>
+							<p>Java</p>
+							<div class="w3-light-grey w3-round-xlarge w3-small">
+								<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">80%</div>
+							</div>
+
+						<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Interests / Hobbies</b></p>
+
+							<p>Coding</p>
+							<p>Software Development</p>
+
+						<p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Certification</b></p>
+
+							<p>IMAD-IIT Madras & Hasura</p>
+
+					</div>
+				</div>
+				<br>
+			</div>
+
+
+			<div class="w3-twothird">
+
+				<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+
+					<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Career Objective</h2>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>I enjoy being challenged and working on projects that require me to work outside my comfort and knowledge set, as continuing to learn new languages and development techniques are important to me and the success of your organization.</b></h5>
+						</div>
+
+				</div>
+
+				<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+
+					<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Internship Experience</h2>
+
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>ReactJS Developer / <a href="http://pinnacle.works/" target="_blank">Pinnacle Works</a></b></h5>
+							<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>January 2018 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
+							<p>Description</p>
+							<hr>
+						</div>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>Java Developer / <a href="http://cebsworldwide.com/" target="_blank">CEBS Worldwide</a></b></h5>
+							<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2017 - July 2017</h6>
+							<p>Description</p>
+							<hr>
+						</div>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>Web Developer / <a href="http://hasura.io/" target="_blank">Hasura</a></b></h5>
+							<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2017 - July 2017</h6>
+							<p>Description</p>
+						</div>
+
+				</div>
+
+				<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+
+					<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Projects</h2>
+
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b><a href="https://github.com/Sarvesh18/Image-Processing/tree/master/Drishti%20(Genero15)" target="_blank">DRISHTI (Genero15)</a></b></h5>
+							<p>The objective was to build an Autonomous Robot capable of Detecting squares, circles, triangle using Overhead Camera and take a Decision to traverse a path from source to destination in Shortest Possible Time.</p>
+							<hr>
+						</div>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b><a href="https://github.com/Sarvesh18/WebApp/tree/master/AICTE%20(SmartIndiaHackathon17%20%26%20Technomentum17)/" target="_blank">Smart India Hackathon17 & Technomentum17</a></b></h5>
+							<p>The objective was to develop Attractive Website Design with Innovative Ideas for AICTE.</p>
+							<hr>
+						</div>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b><a href="" target="_blank">AISHA (IBM Challenge)</a></b></h5>
+							<p>The objective was to develop ChatBot based on Banking System.</p>
+							<hr>
+						</div>
+
+				</div>
+
+				<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+
+					<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>B.Tech.(IT) from ABES Engineering College, Ghaziabad</b></h5>
+							<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2014 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
+							<p>71.33%</p>
+							<hr>
+						</div>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>Intermediate from Central Board of Secondary Education</b></h5>
+							<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2011 - 2013</h6>
+							<p>72.4%</p>
+							<hr>
+						</div>
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>High School from Central Board of Secondary Education</b></h5>
+							<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2009 - 2011</h6>
+							<p>8.6 CGPA</p><br>
+						</div>
+
+				</div>
+
+				<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+
+					<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Achievements</h2>
+
+						<div class="w3-container">
+							<h5 class="w3-opacity"><b>3rd prize in Image Processing(OpenCV) in College-Fest</b></h5>
+							<h5 class="w3-opacity"><b>4rd prize in Warehouse(Robotics) at IIT, Kharagpur</b></h5>
+							<h5 class="w3-opacity"><b>5rd prize in IBM Challenge(ChatBot) at IIIT, Delhi</b></h5>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

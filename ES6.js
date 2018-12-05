@@ -1,16 +1,6 @@
-Template Literals
-var customer = { name: "Foo" }
-var card = { amount: 7, product: "Bar", unitprice: 42 }
-var message = `Hello ${customer.name},
-want to buy ${card.amount} ${card.product} for
-a total of ${card.amount * card.unitprice} bucks?`
-
-
-Binary & Octal Literal
-0b111110111 === 503
-0o767 === 503
-
-
+Binary & Octal Literals
+0b111110111 === 503 // true
+0o767 === 503 // true
 
 Symbol Type
 

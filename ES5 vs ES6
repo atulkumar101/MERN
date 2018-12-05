@@ -1,16 +1,59 @@
+let+const
+var a = 10; 
+var b = 20;
+{
+  let a = 30
+  const b =40;
+}
+
+Template Strings / Interpolation
+--------------------------------
+embedded expressions
+
+`line1 
+${a+b}
+line2`
+
+'line1\n' +
+a+b + '\n' +
+'line 2'
+
+Destructuring
+-------------
+unpack values from arrays, or properties from objects, into distinct variables
+var [a, b, ...rest] = [10, 20, 30, 40, 50];
+
+[a=5, b=7] = [1]; //undefined
+[a, b] = [b, a];
+
+var ({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});
+
+to be continue;
+
+default + rest + spread   
+-----------------------
+initialized with default values if no value or undefined is passed;
+
+function multiply(a, b=1) {
+	return a*b;
+}
+//b = (typeof b !== 'undefined') ?  b : 1;
+console.log(multiply(5,2));
+console.log(multiply(5));
+
+
+Enhanced Object Literals
+var x = 0, y = 0
+obj = { x, y }
+
+
+
 
 ES6 ECMAScript 6 ECMAScript 2015
 Features
 --------
 
 arrows
-let + const
-
-enhanced object literals
-template strings
-destructuring
-default + rest + spread
-
 
 unicode
 
@@ -23,44 +66,6 @@ binary and octal literals
 reflect api
 tail calls
 
-
-
-
-Objects
-Destructing
-String Interpolation
-Default
-Spread
-Module Loaders
-New Library
-Promises
-Proxies
-
-
-1. Let & Const
-2. Default Parameter Values
-3. Arrow Functions
-4. Rest Parameter & Spread Operator  
-5. Exponentiation Operator (**) 
-6.
-
-Enhanced Object Property
-var x = 0, y = 0
-obj = { x, y }
-
-Destructuring Assignment
-var list = [ 1, 2, 3 ]
-var [ a, , b ] = list
-[ b, a ] = [ a, b ]
-
-
-var obj = { a: 1 }
-var list = [ 1 ]
-var { a, b = 2 } = obj
-var [ x, y = 2 ] = list;
-
-
-9.
 
 
 //Array.find()
