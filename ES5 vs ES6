@@ -1,44 +1,37 @@
-ES5 ECMAScript 5 ECMAScript 2009
-
-Features
---------
-The "use strict" Directive
-String.trim()
-Array.isArray()
-Array.forEach()
-Array.map()
-Array.filter()
-Array.reduce()
-Array.reduceRight()
-Array.every()
-Array.some()
-Array.indexOf()
-Array.lastIndexOf()
-JSON.parse()
-JSON.stringify()
-Date.now()
-Property Getters and Setters
-
-Changes
--------
-Property access [ ] on strings
-Trailing commas in array and object literals
-Multiline string literals
-Reserved words as property names
 
 ES6 ECMAScript 6 ECMAScript 2015
 Features
 --------
-Arrows
+
+arrows
+let + const
+
+enhanced object literals
+template strings
+destructuring
+default + rest + spread
+
+
+unicode
+
+proxies
+symbols
+subclassable built-ins
+
+math + number + string + array + object APIs
+binary and octal literals
+reflect api
+tail calls
+
+
+
+
 Objects
-Classes
 Destructing
 String Interpolation
 Default
 Spread
 Module Loaders
-Weak set
-Map
 New Library
 Promises
 Proxies
@@ -66,47 +59,6 @@ var list = [ 1 ]
 var { a, b = 2 } = obj
 var [ x, y = 2 ] = list;
 
-7. Module Export / Import
-
-
-Module Export/Import
-//  lib/math.js
-export function sum (x, y) { return x + y }
-export var pi = 3.141593
-
-//  someApp.js
-import * as math from "lib/math"
-console.log("2π = " + math.sum(math.pi, math.pi))
-
-//  otherApp.js
-import { sum, pi } from "lib/math"
-console.log("2π = " + sum(pi, pi))
-
-
-
-//  lib/mathplusplus.js
-export * from "lib/math"
-export var e = 2.71828182846
-export default (x) => Math.exp(x)
-
-//  someApp.js
-import exp, { pi, e } from "lib/mathplusplus"
-console.log("e^{π} = " + exp(pi))
-
-
-
-
-8. Classes
-class Shape {
-    constructor (id, x, y) {
-        this.id = id
-        this.move(x, y)
-    }
-    move (x, y) {
-        this.x = x
-        this.y = y
-    }
-}
 
 9.
 
@@ -137,11 +89,6 @@ function myFunction(value, index, array) {
 
 
 
-
-
-
-
-
 //New Number Properties
 var x = Number.EPSILON;
 var x = Number.MIN_SAFE_INTEGER;
@@ -167,33 +114,3 @@ isFinite(10/0);       // returns false
 isFinite(10/1);       // returns true
 //The global isNaN() method returns true if the argument is NaN. Otherwise it returns false:
 isNaN("Hello");       // returns true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

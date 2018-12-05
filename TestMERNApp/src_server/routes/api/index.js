@@ -6,6 +6,11 @@ router.use(bodyParser.json());
 router.use(bodyParser.text());
 router.use(bodyParser.urlencoded({extended: false}));
 
+//const swaggerUi = require('swagger-ui-express');
+//const swaggerDocument = require('./swagger.json');
+//router.use('/', swaggerUi.serve);
+//router.get('/', swaggerUi.setup(swaggerDocument));
+
 import jwt from 'jsonwebtoken'; 
 
 import * as config from '../../config/index.js';

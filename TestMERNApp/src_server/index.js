@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 import 'babel-polyfill';
 import api from './routes/api/index.js';
 import auth from './routes/auth/index.js';
-//import get from './routes/get/index.js';
 
 const app = express();
 dotenv.config(); //({path:''})
@@ -16,9 +15,15 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static('dist'));
 
+var options = {
+    customCss: '.swagger-ui .topbar { display: none }'
+};
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+
 app.use('/api/',api);
 app.use('/auth/',auth);
-//app.use('/',get);
 
 app.get('*', (req,res) => {
     res.redirect('/');
