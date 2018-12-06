@@ -9,7 +9,7 @@ import { calculateTotalPage, createPagination, calculateTotalProduct } from '../
 import { loadMore } from '../assets/utils/fetch';
 
 import Select from '../components/Select';
-import Products from '../components/Products';
+import Products from '../components/Product/Products';
 import Pagination from '../components/Pagination';
 
 import withPaginator from '../HOC/withPaginator';
@@ -94,9 +94,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);
-
-//this.props.thunkAction('okokokok');
-//this.props.dispatch(testAction('ssssssss'));
 
    /*
     isUserLoggedIn() {

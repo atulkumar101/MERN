@@ -1,7 +1,6 @@
 import React from 'react';
-import '../assets/style/style.css';
 
-import ProductCard from './Product/ProductCard'; 
+import ProductCard from './ProductCard'; 
 
 class Products extends React.Component {
     render() {

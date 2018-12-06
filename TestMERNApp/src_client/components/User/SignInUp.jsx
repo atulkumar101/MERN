@@ -117,24 +117,22 @@ class SignInUp extends Component {
         }
         <hr/>
         <p>Or connect with:</p>
-        <button type="button" className="btn btn-default"
-            onClick={() => this.sign()}>Facebook</button>
-        <button type="button" className="btn btn-success"
-            onClick={() => this.sign()}>Github</button>
-        <button type="button" className="btn btn-danger"
-            onClick={() => this.sign()}>LinkedIn</button>
-
-        <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-        
+            <button type="button" className="btn btn-default"
+                onClick={() => this.facebook()}>Facebook</button>
+            <button type="button" className="btn btn-success"
+                onClick={() => this.github()}>Github</button>
+            <button type="button" className="btn btn-danger"
+                onClick={() => this.linkedin()}>LinkedIn</button>
+            <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
         <br/>
-        <p>By signing in, you agree to our <a>Terms of Service</a> and <a>Privacy Policy</a>.</p>
-        {
-          //<a href="#" onClick={()=> this.signOut()}>Sign out</a>
-          //<Link to={'/sign'}>Instead</Link>
-        } 
+        <p>By signing in, you agree to our <a>Terms of Service</a> and <a>Privacy Policy</a>.</p>  
       </div>
     );
   }
 }
 
 export default SignInUp;
+
+//<a href="#" onClick={()=> this.signOut()}>Sign out</a>
+//<Link to={'/sign'}>Instead</Link>
+ 
