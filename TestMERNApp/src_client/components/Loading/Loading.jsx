@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/style/style.css';
-import logo from '../../logo.svg';
+//import logo from '../../logo.svg';
 
 class Loading extends React.Component {
     render() {

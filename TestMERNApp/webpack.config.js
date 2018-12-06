@@ -23,6 +23,12 @@ var browserConfig = {
   },
   module: {
     rules: [
+      {
+        test: /\.(js||jsx)$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: { failOnError: true }
+      },
       {  
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,

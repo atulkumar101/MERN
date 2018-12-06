@@ -8,7 +8,7 @@ import logger from 'redux-logger';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from "redux";
 
-import {BrowserRouter, HashRouter, Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";//HashRouter, Router,
 
 import reducer from './redux/reducer';
 import indexRoutes from "./routes/index";

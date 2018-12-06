@@ -2,7 +2,7 @@ import React from 'react';
 
 import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/utils';
 
-import {compose} from 'redux';
+//import {compose} from 'redux';
 import {connect} from 'react-redux';
 
 function withPaginator(WrappedComponent) {

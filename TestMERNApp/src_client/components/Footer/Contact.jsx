@@ -3,7 +3,7 @@ import Address from '../../assets/img/Icon/Address.png';
 import Phone from '../../assets/img/Icon/Phone.png';
 import Email from '../../assets/img/Icon/Email.png';
 import '../../assets/style/style.css';
-import { GITHUB, LINKEDIN, FACEBOOK, YOUTUBE, TWITTER } from '../../constant/App';
+//import { GITHUB, LINKEDIN, FACEBOOK, YOUTUBE, TWITTER } from '../../constant/App';
 
 
 class Contact extends React.Component {

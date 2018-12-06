@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
     
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+//import Footer from "../components/Footer/Footer";
 import Contact from "../components/Footer/Contact";
 import Social from "../components/Footer/Social";
 import Map from "../components/Footer/Map";

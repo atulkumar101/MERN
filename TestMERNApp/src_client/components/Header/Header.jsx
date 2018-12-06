@@ -5,7 +5,7 @@ import '../../assets/style/index.css';
 import logo from '../../logo.svg';
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+//import {bindActionCreators} from 'redux';
 
 class Header extends React.Component {
     render() {

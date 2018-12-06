@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import '../../assets/style/style.css';
 
-import Checkout from '../Material-UI/Checkout';
+//import Checkout from '../Material-UI/Checkout';
 import {addToCart} from '../../redux/action/cart';
 import {findByID} from '../../redux/action/product';
 import {connect} from 'react-redux';
