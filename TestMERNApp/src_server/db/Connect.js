@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 import { MONGO_URL } from '../config';
 
 mongoose.connection.on('connected', function(){
@@ -25,11 +26,10 @@ process.on('SIGINT', function(){
 });
 
 module.exports = mongoose.connect(MONGO_URL, { useNewUrlParser: true }, function (err) {
-    
-    if (err) throw err;
-    
+    if (err) 
+        throw err;
+        
     console.log('Successfully Connected');
-    
 });
 
 mongoose.set('useCreateIndex', true);

@@ -1,11 +1,11 @@
 import React from 'react';
-import Facebook from '../../assets/img/Icon/Facebook.png';
-import Youtube from '../../assets/img/Icon/Youtube.png';
-import Twitter from '../../assets/img/Icon/Twitter.png';
-import Github from '../../assets/img/Icon/Github.png';
-import LinkedIn from '../../assets/img/Icon/LinkedIn.png';
-import '../../assets/style/style.css';
-import { GITHUB, LINKEDIN, FACEBOOK, YOUTUBE, TWITTER } from '../../constant/App';
+
+import Facebook from '../../../assets/img/Icon/Facebook.png';
+import Youtube from '../../../assets/img/Icon/Youtube.png';
+import Twitter from '../../../assets/img/Icon/Twitter.png';
+import Github from '../../../assets/img/Icon/Github.png';
+import LinkedIn from '../../../assets/img/Icon/LinkedIn.png';
+import { GITHUB, LINKEDIN, FACEBOOK, YOUTUBE, TWITTER } from '../../../assets/constant';
 
 
 class Social extends React.Component {

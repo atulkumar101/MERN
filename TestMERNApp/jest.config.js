@@ -1,7 +1,7 @@
 module.exports = {
     verbose: true,
     //"jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>src/config/setupTest.js",
+    "setupTestFrameworkScriptFile": "<rootDir>src_client/assets/config/jest.js",
     //}
     //"testEnvironment": "node"
     "moduleNameMapper": {

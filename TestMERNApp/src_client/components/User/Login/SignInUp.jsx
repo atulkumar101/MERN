@@ -1,13 +1,12 @@
 import  React, {Component} from 'react';
-import "../../assets/style/style.css";
 
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-//import {Link} from 'react-router-dom';
+import SocialSignIn from './SocialSignIn';
+import Error from '../../Error/Error';
 
-import {login, register} from '../../assets/utils/fetch';
-import {setLocalStorage, getLocalStorage} from '../../assets/utils/cookie';
-
+import {login, register} from '../../../assets/util/fetch';
+import {setLocalStorage, getLocalStorage} from '../../../assets/util/cookie';
 
 class SignInUp extends Component {
   constructor(props) {
@@ -44,11 +43,12 @@ class SignInUp extends Component {
     //console.log('signIn()', email, password);
     login(email, password) 
     .then(success => {
+      console.log('success', success);
       setLocalStorage(success);
       this.setState({success});
     })
     .catch(error => {
-      //console.log(error);
+      console.log('error', error);
       this.setState({error});
     });
   }
@@ -58,11 +58,12 @@ class SignInUp extends Component {
     //console.log('signUp()', name, email, password);
     register(name, email, password) 
     .then(success => {
+      console.log('success', success);
       setLocalStorage(success); 
       this.setState({success});
     })
     .catch(error => {
-      //console.log(error);
+      console.log('error', error);
       this.setState({error});
     });
   }
@@ -88,42 +89,9 @@ class SignInUp extends Component {
             //has-error
             //<span className="glyphicon glyphicon-remove form-control-feedback"></span>
         }
-        {
-          this.state.warning 
-          ? (<div class="alert alert-warning alert-dismissible fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {console.log('warning',this.state.warning)}
-            <strong>{this.state.warning}</strong> 
-          </div>) 
-          : ''
-        }
-        {
-          this.state.error 
-          ? (<div class="alert alert-danger alert-dismissible fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {console.log('success err',this.state.error)}
-            <strong>{this.state.error}</strong> 
-          </div>) 
-          : ''
-        }
-        {
-          this.state.success 
-          ? (<div class="alert alert-success alert-dismissible fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {console.log('success',this.state.success)}
-            <strong>{this.state.success}</strong> 
-          </div>) 
-          : ''
-        }
+        <Error warning={this.state.warning} error={this.state.error} success={this.state.success} />
         <hr/>
-        <p>Or connect with:</p>
-            <button type="button" className="btn btn-default"
-                onClick={() => this.facebook()}>Facebook</button>
-            <button type="button" className="btn btn-success"
-                onClick={() => this.github()}>Github</button>
-            <button type="button" className="btn btn-danger"
-                onClick={() => this.linkedin()}>LinkedIn</button>
-            <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <SocialSignIn />
         <br/>
         <p>By signing in, you agree to our <a>Terms of Service</a> and <a>Privacy Policy</a>.</p>  
       </div>
@@ -133,6 +101,4 @@ class SignInUp extends Component {
 
 export default SignInUp;
 
-//<a href="#" onClick={()=> this.signOut()}>Sign out</a>
-//<Link to={'/sign'}>Instead</Link>
  

@@ -1,6 +1,7 @@
-import * as config from '../config/index.js';
+import * as config from '../config';
 
 import {OAuth2Client} from 'google-auth-library';
+
 export const verifyGmail = async function (req) {
   const ticket = await new OAuth2Client(config.GMAIL_CLIENTID).verifyIdToken({
       idToken: req.body.IDToken,
@@ -14,19 +15,19 @@ export const verifyGmail = async function (req) {
   console.log('domain : ',domain);
 }
 
-
 import jwt from 'jsonwebtoken'; 
+
 export const verifyToken = (req, res, next) => {
   let token = req.headers['x-access-token'] || req.headers['authorization'];
   if (token.startsWith('Bearer ')) {
     token = token.slice(7, token.length);
   }
   if (!token) 
-      return res.status(403).json({auth:false, err:'No Token Provided !'});
+      return res.status(403).json({auth:false, err: config.ERROR403});
 
   jwt.verify(token, config.SECRET, (err, decoded) => {      
     if (err) 
-      return res.status(500).json({auth:false, err:'Failed to Authenticate Token !'});    
+      return res.status(401).json({auth:false, err: config.ERROR401});    
       req.decoded = decoded;   
       next();
   });
@@ -39,6 +40,3 @@ export const hashPassword = (input) => {
 export const comparePassword = (curr, pass) => {
   console.log();
 }
-/*
-
-*/

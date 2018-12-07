@@ -8,6 +8,9 @@ const User = new mongoose.Schema({
   imageUrl: String,
 });
 
+
+module.exports = mongoose.model('User', User);
+
 /*
 User.virtual('url').get(() => {
   return '/catalog/author/' + this._id;
@@ -26,5 +29,3 @@ User.post('save', function(error, res, next) {
   }
 });
 */
-module.exports = mongoose.model('User', User);
-

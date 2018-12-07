@@ -1,7 +1,5 @@
 import React from 'react';
-
 import renderer from 'react-test-renderer';
-
 import { shallow, mount, render } from 'enzyme';
 
 import Sign from '../jsx/Sign';

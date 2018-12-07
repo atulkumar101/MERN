@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const router = express.Router();
+
 router.use(bodyParser.json());
 router.use(bodyParser.text());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -10,8 +11,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import * as config from '../../config/index.js';
-import { verifyGmail, verifyToken } from "../../utils";
-
+import { verifyGmail } from "../../util";
 
 var Connect = require("../../db/Connect");
 var User = require("../../models/User");
@@ -28,30 +28,34 @@ router.use(session({
 }));
 */
 
-
-router.post('/login', function(req, res) {
+/**
+ * /auth/login
+ */
+router.post(config.SIGNIN_URL, function(req, res) {
     console.log('login', req.body);
     User.findOne({ 
         email: req.body.email 
     }, 
     function(err, user) {
         if(err) 
-            return res.status(500).json({auth: false, err: err.errmsg});
+            return res.status(500).json({auth: false, err: err.errmsg.toString()});
         if(!user) 
-            return res.status(404).json({auth: false, err: 'User Not Found !'});
+            return res.status(404).json({auth: false, err: 'User Not Found.'});
 
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
         if(!passwordIsValid) 
-            return res.status(401).json({auth: false, err: 'Password Not Valid !'});
+            return res.status(401).json({auth: false, err: 'Password Not Valid.'});
         
         const token = jwt.sign({id:user._id}, config.SECRET, {/*expiresIn: 86400*/});
         res.status(200).json({auth: true, msg:'Success', token: token});
     });
 });
 
-
-router.post('/register', function(req,res) {
+/**
+ * /auth/register
+ */
+router.post(config.SIGNUP_URL, function(req,res) {
     console.log('register',req.body);
 
     const hashedPassword = bcrypt.hashSync(req.body.password,8);
@@ -64,41 +68,37 @@ router.post('/register', function(req,res) {
     }, 
     function(err, user) {
         if(err) 
-            return res.status(500).json({auth: false, err: err.errmsg});
+            return res.status(500).json({auth: false, err: err.errmsg.toString()});
         const token = jwt.sign({id:user._id}, config.SECRET, {/*expiresIn:86400*/});
         res.status(200).json({auth: true, msg:'Success', token: token});
     });
 });
 
-
-
-
-router.post('/gmail', function (req,res) {
+/**
+ * /auth/gmail
+ */
+router.post(config.GMAIL_URL, function (req,res) {
     verifyGmail(req)
     .then(()=>{
         //req.session.auth = {TokenID: request.TokenID};
-        res.status(200).send('Account Created !');
+        res.status(200).send('Successfully Login Through Gmail.');
     })
     .catch(()=> {
-        res.status(404).send('Something Went Wrong !');
+        res.status(404).send('Something Went Wrong.');
     });
 });
 
-
-router.get('/profile',verifyToken,function(req,res,next) {
-    const id = req.decoded.id;
-    console.log(id);
-    User.findById(id, function (err, user) {
-        if (err) 
-            return res.status(500).send(err);
-        if (!user) 
-            return res.status(404).send("No User Found !");
-        
-        res.status(200).send(user);
-    });
+/**
+ * /auth/logout
+ */
+router.get(config.LOGOUT_URL, function(req,res) {
+    //delete req.session.auth;
+    res.status(200).send({auth: false, token: null});
 });
 
-
+/**
+ * 
+ */
 router.get('/check-session', function (req, res) {
     if (req.session && req.session.auth && req.session.auth.UserID) {
         res.send('You are logged in:' + req.session.auth.UserID.toString());
@@ -108,15 +108,46 @@ router.get('/check-session', function (req, res) {
     }
  });
 
-
+/**
+ * 
+ */
 router.get('/create-session', function (req, res) {
     req.session.auth= {UserID: 'test session'};
     res.send('Created Session');
 });
 
-router.get('/logout', function(req,res) {
-    delete req.session.auth;
-    res.status(200).send({auth: false, token: null});
-});
-
 module.exports = router;
+/*
+    var salt = crypto.randomBytes(128).toString('hex');
+    var dbString = hash(passwordS, salt);
+    
+    pool.query('INSERT INTO "user" (username, password, email) VALUES ($1, $2, $3)', [usernameS, dbString,  emailS], function(err, result) {
+    if(err) {
+        res.status(500).send(err.toString());
+    }
+    else {
+        res.send('User Successfully Registered:');
+    }
+ 
+    pool.query('SELECT id, password FROM "user" WHERE username = $1', [username], function(err, result) {
+    if(err) {
+        res.status(500).send(err.toString());
+    }
+    else {
+        if(result.rows.length === 0) {
+            res.send(403).send('Username/Password is Invalid');
+        }
+        else {
+           var dbString = result.rows[0].password;
+           var salt = dbString.split('$')[2];
+           var hashedPassword  = hash(password, salt);
+           if(hashedPassword == dbString) {
+            req.session.auth = {userId: result.rows[0].id};
+            res.send('Credentials Correct!');
+           }
+           else {
+            res.send(403).send('Username/Password is Invalid');
+           }
+        }
+    }
+*/

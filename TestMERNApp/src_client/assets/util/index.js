@@ -1,11 +1,10 @@
-import {PRODUCT_LIMIT} from '../../constant';
+import {PRODUCT_LIMIT} from '../constant';
 
 export function calculateTotalPrice(products) {
     let total=0;
     products.map(product => (
       total = total+product.price
     ));
-    console.log(total);
     return total;
 }
 

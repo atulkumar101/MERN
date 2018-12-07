@@ -35,5 +35,5 @@ export const TWITTER = "https://twitter.com/sarvesh_smcs2";
 export const GITHUB = "https://www.github.com/sarvesh18"; 
 export const LINKEDIN = "https://www.linkedin.com/in/sarvesh18/";
 
-export const MAP = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14036.28784659827!2d77.0403477!3d28.4170854!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdb611be44b70aad0!2sExalatic!5e0!3m2!1sen!2sin!4v1488013336136";
+//export const MAP = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14036.28784659827!2d77.0403477!3d28.4170854!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdb611be44b70aad0!2sExalatic!5e0!3m2!1sen!2sin!4v1488013336136";
 

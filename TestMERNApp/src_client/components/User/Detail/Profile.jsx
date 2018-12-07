@@ -1,8 +1,7 @@
 import React from 'react';
 
-import '../../assets/style/index.css';
-import logo from '../../logo.svg';
-import {profile} from '../../assets/utils/fetch';
+import logo from '../../../logo.svg';
+import {profile} from '../../../assets/util/fetch';
 
 class Profile extends React.Component {
     constructor(props) {

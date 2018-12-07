@@ -1,12 +1,9 @@
 import React from 'react';
-
-import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/utils';
-
-//import {compose} from 'redux';
 import {connect} from 'react-redux';
 
+import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/util';
+
 function withPaginator(WrappedComponent) {
-    //return class extends React.Component {}
     class Paginator extends React.Component {
         constructor(props) {
             super(props);
@@ -54,7 +51,6 @@ function withPaginator(WrappedComponent) {
         }
     }
     return connect(mapStateToProps)(Paginator);
-    //return Paginator;
 }
 
 function mapStateToProps(state) {
@@ -62,11 +58,5 @@ function mapStateToProps(state) {
         product: state.product
     });
 }
-/*
-const composedWrapper = compose(
-    connect(mapStateToProps, null),
-    withPaginator
-);
-export default composedWrapper;
-*/
+
 export default withPaginator;

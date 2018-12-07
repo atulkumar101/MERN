@@ -1,4 +1,4 @@
-import {CART, ADD, REMOVE} from '../../constant';
+import {CART, ADD, REMOVE} from '../../assets/constant';
 
 export const addCart = (cart) => {
     const action = {

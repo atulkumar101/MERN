@@ -1,4 +1,4 @@
-import {PRODUCT, FIND, SORT, FILTER} from '../../constant';
+import {PRODUCT, FIND, SORT, FILTER} from '../../assets/constant';
  
 const initialState = {
     product: [],

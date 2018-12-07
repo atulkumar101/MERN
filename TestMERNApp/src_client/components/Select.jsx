@@ -1,10 +1,8 @@
 import React from 'react';
-
-import {sortBy, filterBy} from '../redux/action/product';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import PrintStar from './PrintStar';
+import {sortBy, filterBy} from '../redux/action/product';
 
 class Select extends React.Component {
     constructor(props) {

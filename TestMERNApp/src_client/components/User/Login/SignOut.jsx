@@ -9,12 +9,10 @@ class Account extends React.Component {
         });
         //this.props.onStatusChange(false);
         //this.props.history.push('/signout');
-  
     }
     render() {
         return(
             <div>
-                <h3>Please SignIn or SignUp!</h3>
                 {/*<Link to={'/signin'}>SignIn</Link><br/>
                 <Link to={'/signup'}>SignUp</Link>*/}
                 <button type="button" className="btn btn-danger"

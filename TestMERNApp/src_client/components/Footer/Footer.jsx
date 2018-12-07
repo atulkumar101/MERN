@@ -1,17 +1,32 @@
 import React from 'react';
-import '../../assets/style/style.css';
-import logo from '../../logo.svg';
+
+import Heading from './Require/Heading';
+import Image from "./Require/Image";
+import Contact from "./Require/Contact";
+import Social from "./Require/Social";
+import Map from "./Require/Map";
+import Copyright from './Require/Copyright';
 
 class Footer extends React.Component {
     render() {
         return(
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">Footer</h1>
-                    <img src={logo} className="App-logo" alt="logo" />
-                </header>
-                <p className="App-intro">
-                </p>
+            <div className="footer">
+                <div className="container">
+                    <span className="skype-button bubble" data-contact-id="live:sarvesh.singh18">
+                    </span>
+                    <div className="w3-center">
+                        <Heading />
+                    </div>
+                    <Image />
+                    <div className="footer_info">
+                        <Contact />
+                        <Social />
+                        <Map />
+                    </div>
+                    <div className="w3-center">
+                        <Copyright />
+                    </div>
+                </div>
             </div>
         );
     }

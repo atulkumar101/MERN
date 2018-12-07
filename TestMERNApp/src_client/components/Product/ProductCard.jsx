@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/style/style.css';
+
 import PrintStar from '../PrintStar'; 
 
 class ProductCard extends React.Component {

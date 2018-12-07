@@ -1,12 +1,11 @@
 import React from 'react';
-
-import {apiData} from '../redux/action/product';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/utils';
+import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/util';
+import { loadMore } from '../assets/util/fetch';
 
-import { loadMore } from '../assets/utils/fetch';
+import {apiData} from '../redux/action/product';
 
 import Select from '../components/Select';
 import Products from '../components/Product/Products';
@@ -31,11 +30,16 @@ class Home extends React.Component {
     componentDidMount() {
         this.props.apiData();
         this.calculatePagination();
-        const product = loadMore(this.state.skip);
+        //const product = 
+        loadMore(this.state.skip)
+        .then((success) => console.log('success', success))
+        .catch((error) => console.log('error', error.toString()));
     }
     componentDidUpdate(prevProps, prevState) {
         if (this.state.skip !== prevState.skip) {
-            const product = loadMore(this.state.skip);
+            loadMore(this.state.skip)
+            .then((success) => console.log('success', success))
+            .catch((error) => console.log('error', error.toString()));    
         }
         if (this.props.product.update !== prevProps.product.update) {
             this.calculatePagination();
@@ -95,18 +99,18 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);
 
-   /*
-    isUserLoggedIn() {
-        console.log('isUserLoggedIn()');
-        if(this.state.email!='')
-        {
-        return true;
-        }
-        else if(this.state.email=='') {
-        return false;
-        }
-        else {
-        return null;
-        }
+/*
+isUserLoggedIn() {
+    console.log('isUserLoggedIn()');
+    if(this.state.email!='')
+    {
+    return true;
     }
-    */
+    else if(this.state.email=='') {
+    return false;
+    }
+    else {
+    return null;
+    }
+}
+*/

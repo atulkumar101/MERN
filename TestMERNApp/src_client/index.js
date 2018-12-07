@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import 'typeface-roboto';
+import './assets/style/index.css';
+import './assets/style/style.css';
 
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -17,14 +19,11 @@ const persistedState = localStorage.getItem('redux-store')?JSON.parse(localStora
 
 const store = createStore(reducer,persistedState, applyMiddleware(thunk, logger)); 
 
-//console.log('getState()',store.getState());
-
+//store.getState();
 store.subscribe(() => {
   localStorage.setItem('redux-store', JSON.stringify(store.getState()));
 })
-
-//import {apiData} from './redux/action/product';
-//store.dispatch(apiData()); 
+//store.dispatch(() => {}); 
 
 ReactDOM.render(
     <Provider store={store}>

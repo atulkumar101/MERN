@@ -1,25 +1,12 @@
 import React from 'react';
-import '../../assets/style/style.css';
-import '../../assets/style/index.css';
+import {connect} from 'react-redux';
 
 import logo from '../../logo.svg';
-
-import {connect} from 'react-redux';
-//import {bindActionCreators} from 'redux';
+import {HOME_URL, ADMIN_URL, LOGIN_URL, LOGOUT_URL, CART_URL, PROFILE_URL, ACCOUNT_URL} from '../../assets/constant';
 
 class Header extends React.Component {
     render() {
         return(
-            /*
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Header</h1>
-                </header>
-                <p className="App-intro">
-                </p>
-            </div>
-            */
            <div> 
                 <nav className="navbar navbar-inverse">
                     <div className="container-fluid">
@@ -27,8 +14,8 @@ class Header extends React.Component {
                             <a className="navbar-brand" href="javascript:void(0);"><img src={logo} className="logo" alt="logo" /></a>
                         </div>
                         <ul className="nav navbar-nav">
-                            <li className="active"><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/home');}}>Home</a></li>
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/admin');}}>Admin</a></li>
+                            <li className="active"><a href="javascript:void(0);" onClick={()=> {this.props.history.push(HOME_URL);}}>Home</a></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(ADMIN_URL);}}>Admin</a></li>
                         </ul>
                         <form className="navbar-form navbar-left" action="/">
                             <div className="input-group">
@@ -41,13 +28,13 @@ class Header extends React.Component {
                             </div>
                         </form>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/cart');}}><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></a></li>
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/login');}}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(CART_URL);}}><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></a></li>
+                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(LOGIN_URL);}}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
                             <li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/profile');}}>Profile</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/account');}}>Account</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push('/logout');}}>Logout</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(PROFILE_URL);}}>Profile</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(ACCOUNT_URL);}}>Account</a></li>
+                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(LOGOUT_URL);}}>Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -65,3 +52,13 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Header);
+/*
+<div className="App">
+    <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">Header</h1>
+    </header>
+    <p className="App-intro">
+    </p>
+</div>
+*/

@@ -2,8 +2,7 @@
     "parser" : "babel-eslint",
     "plugins": [
         "react",
-        "node",
-        "import"
+        "node"
     ],
     "env":{
         "browser": true,

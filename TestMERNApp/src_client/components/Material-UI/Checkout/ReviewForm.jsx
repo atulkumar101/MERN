@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {compose} from 'recompose';
+import {compose} from 'redux';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-import {calculateTotalPrice} from '../../assets/utils/index';
+import {calculateTotalPrice} from '../../../assets/util';
 
 const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 

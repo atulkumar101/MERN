@@ -1,10 +1,12 @@
 var mongodb = require('mongodb');
-const MongoClient=mongodb.MongoClient;
 
+const MongoClient=mongodb.MongoClient;
 const URL = "mongodb://localhost:27017/";
 
 MongoClient.connect(URL, function (err, db) {
-    if(err) throw err;
+    if(err) 
+        throw err;
+    
     console.log('db', db);
     var dbo = db.db("E-Commerce");
     console.log('dbo', dbo);
@@ -43,16 +45,16 @@ MongoClient.connect(URL, function (err, db) {
     ];
 
     dbo.collection("products").insertMany(prod,function(err,res) {
-        if(err) throw err;
-        console.log("many document inserted: "+res.insertedCount);
-        console.log(res.result,"ok:1,n:14");
-        console.log(res.ops,"name: address: _id:");
-        console.log(res.insertedCount);
-        console.log(res.insertedIds,'[]');
+        if(err) 
+            throw err;
+        
+        console.log(res.result+"Document Count: "+res.insertedCount);
     });
 
     dbo.collection("Product").find({},{_id: 0, name: 1}).toArray(function(err,res){
-        if(err) throw err;
+        if(err) 
+            throw err;
+        
         console.log(res);
     });
 
