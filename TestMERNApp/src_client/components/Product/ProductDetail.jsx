@@ -3,17 +3,22 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {addToCart} from '../../redux/action/cart';
-import {findByID} from '../../redux/action/product';
+import {search} from '../../assets/util/fetch'; 
 
 import PrintStar from '../PrintStar';
 
 class ProductDetail extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            product: ''
+        }
     }
     componentDidMount() {
-        Promise.resolve(this.props.findByID(this.props.match.params.id))
-        .then(()=>this.imageZoom("myimage", "myresult"));
+        search(this.props.match.params.id)
+        .then(success => this.setState({product: success}))
+        .then(()=>this.imageZoom("myimage", "myresult"))
+        .catch(error => console.log('eror',error.toString()));
     }
 
     imageZoom = (imgID, resultID) => {
@@ -81,33 +86,33 @@ class ProductDetail extends Component {
                     <img id="myimage" src={url} />
                 </div>
                 */}
-                {this.props.product.update.map(
-                        (prod, index) => {
-                            return (<div key={index}>
+                {
+                    this.state.product?(
+                            <div>
                                 <div className="container">
                                     <div className="img-zoom-container">
-                                        <img id="myimage" src={prod.img}/>
+                                        <img id="myimage" src={this.state.product.img}/>
                                     </div>
                                     <div id="myresult" className="img-zoom-result"></div>
                                 </div>
                                 <div className="container">
-                                    <div>{prod.name}</div>
-                                    <div>{prod.price}</div>
-                                    <div><PrintStar rating={prod.rating} /></div>
-                                    <div>{prod.category}</div>
-                                    <div>{prod.quantity>0?"Available":"Not Available"}</div>
-                                    <div>{prod.desc}</div>                                
+                                    <div>{this.state.product.name}</div>
+                                    <div>{this.state.product.price}</div>
+                                    <div><PrintStar rating={this.state.product.rating} /></div>
+                                    <div>{this.state.product.category}</div>
+                                    <div>{this.state.product.quantity>0?"Available":"Not Available"}</div>
+                                    <div>{this.state.product.desc}</div>                                
                                 </div>
-                            </div>);
-                        }
-                )}
+                            </div>
+                        ): ''
+                }
                 <div className="container">
                     <p><button type="button" onClick={()=> {
                             //console.log("history",this.props.history);
                             //console.log("location",this.props.location);
                             //console.log("match",this.props.match);
                             //console.log("staticContext",this.props.staticContext);
-                            this.props.addToCart(this.props.product.update);
+                            this.props.addToCart(this.state.product);
                             //this.props.history.push('/cart');
                         }}>Add to Cart
                     </button></p> 
@@ -126,14 +131,9 @@ class ProductDetail extends Component {
     }
 };
 
-function mapStateToProps(state, ownProps) {
-    return ({
-        product: state.product
-    });
-}
 function mapDispatchToProps(dispatch, ownProps) {
-    return bindActionCreators({findByID, addToCart}, dispatch);
+    return bindActionCreators({addToCart}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ProductDetail);
+export default connect(null,mapDispatchToProps)(ProductDetail);
 

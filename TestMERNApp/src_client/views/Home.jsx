@@ -10,6 +10,7 @@ import {apiData} from '../redux/action/product';
 import Select from '../components/Select';
 import Products from '../components/Product/Products';
 import Pagination from '../components/Pagination';
+import Login from '../components/Material-UI/Login/SignIn';
 
 import withPaginator from '../HOC/withPaginator';
 
@@ -24,22 +25,47 @@ class Home extends React.Component {
             page: 0,
             totalPage: [],
             currentPage: 1,
-            product: []
+            product: [],
+            load: []
         }
+        this.scroll = this.scroll.bind(this);
     }
     componentDidMount() {
         this.props.apiData();
         this.calculatePagination();
-        //const product = 
         loadMore(this.state.skip)
         .then((success) => console.log('success', success))
         .catch((error) => console.log('error', error.toString()));
+        document.addEventListener("scroll", this.scroll);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("scroll", this.scroll);
+    }
+
+    scroll() {
+        let x = document.body.scrollHeight - document.body.scrollTop || document.documentElement.scrollHeight - document.documentElement.scrollTop;
+        console.log(x);
+
+        if(x > 400) {
+            x=x+400;
+            loadMore(this.state.skip)
+            .then((success) => this.setState({load: [...this.state.load, ...success], skip: this.state.skip+1}))
+            .catch((error) => console.log('error', error.toString()));
+            console.log(document.body.scrollTop, document.documentElement.scrollTop);
+        }
+        //window.scrollTo(x,y);
     }
     componentDidUpdate(prevProps, prevState) {
         if (this.state.skip !== prevState.skip) {
             loadMore(this.state.skip)
             .then((success) => console.log('success', success))
-            .catch((error) => console.log('error', error.toString()));    
+            .catch((error) => console.log('error', error.toString()));   
+        }
+        if (this.state.load !== prevState.load) {
+            loadMore(this.state.skip)
+            .then((success) => console.log('success', success))
+            .catch((error) => console.log('error', error.toString()));   
         }
         if (this.props.product.update !== prevProps.product.update) {
             this.calculatePagination();
@@ -78,7 +104,9 @@ class Home extends React.Component {
                 
                 <Products products={this.state.product} {...this.props}/>
                 <Pagination products={this.state.product} totalPage={this.state.totalPage} currentPage={this.state.currentPage} pagination={this.pagination} {...this.props}/>
-         
+                
+                <Products products={this.state.load} {...this.props} />
+
                 <button type="button" onClick={()=> {
                     const skip=this.state.skip+1;
                     this.setState({skip});

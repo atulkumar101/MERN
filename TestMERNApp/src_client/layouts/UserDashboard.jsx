@@ -16,17 +16,19 @@ class UserDashboard extends Component {
     return (
       <ErrorBoundary>
         <Header {...this.props} />
-        <Switch>
-          
-          {userRoutes.map((prop, key) => {
-            if (prop.redirect)
-              return <Redirect from={prop.path} to={prop.to} key={key} />;
-            return (
-              <Route path={prop.path} component={prop.component} key={key} />
-            );
-          })}
+        <ErrorBoundary>
+          <Switch>
+            
+            {userRoutes.map((prop, key) => {
+              if (prop.redirect)
+                return <Redirect from={prop.path} to={prop.to} key={key} />;
+              return (
+                <Route path={prop.path} component={prop.component} key={key} />
+              );
+            })}
 
-        </Switch>
+          </Switch>
+        </ErrorBoundary>
         <Footer {...this.props} />
       </ ErrorBoundary>
     );

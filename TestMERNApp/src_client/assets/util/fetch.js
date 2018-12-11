@@ -1,5 +1,5 @@
-import {SIGNIN_API, SIGNUP_API, GMAIL_API, PROFILE_API, PAGINATION_API, PRODUCT_TOKEN, PRODUCT_LIMIT} from '../constant';
-import {getLocalStorage} from './cookie';
+import {SIGNIN_API, SIGNUP_API, GMAIL_API, PROFILE_API, PAGINATION_API, SEARCH_API, PRODUCT_TOKEN, PRODUCT_LIMIT} from '../constant';
+import {getLocalStorage} from './localStorage';
 
 function handleResponse(response) {
 	if(!response.ok) {
@@ -37,8 +37,24 @@ function timeout(value) {
    })	
 }
 
+
+
 export const loadMore = (skip, url, options) => {
     url = url || `${PAGINATION_API}?skip=${skip}&limit=${PRODUCT_LIMIT}`; 
+    options = options || {
+        method: "GET", 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${PRODUCT_TOKEN}`
+        } 
+    }
+    return Promise.race([timeout(1000), fetchWrapper(url, options)]);
+} 
+
+
+
+export const search = (id, url, options) => {
+    url = url || `${SEARCH_API}?id=${id}`; 
     options = options || {
         method: "GET", 
         headers: {

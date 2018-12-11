@@ -1,4 +1,4 @@
-import {PRODUCT, FIND, SORT, FILTER} from '../../assets/constant';
+import {PRODUCT, SORT, FILTER} from '../../assets/constant';
  
 const initialState = {
     product: [],
@@ -10,9 +10,6 @@ const product = (state=initialState, action) => {
     switch(action.type) {
         case PRODUCT: 
             return {product: [...action.product], update: [...action.product]};
-        case FIND: 
-            const find = product.filter(i => i._id===action._id);
-            return { product: product, update: [...find]};
        case SORT: 
             const sort=action.select === 'ASC' ? 
                 update.sort((a, b) => {return a.price-b.price;}) : 

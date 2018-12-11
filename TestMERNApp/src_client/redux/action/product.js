@@ -1,4 +1,4 @@
-import {PRODUCT_API, PRODUCT_TOKEN, PRODUCT, FIND, SORT, FILTER} from '../../assets/constant';
+import {PRODUCT_API, PRODUCT_TOKEN, PRODUCT, SORT, FILTER} from '../../assets/constant';
 
 export const apiData = () => {
     return (dispatch,getState) => {
@@ -33,13 +33,6 @@ export const addProduct = (product) => {
         type: PRODUCT,
         product
     };
-    return action;
-}
-export const findByID = (_id) => {
-    const action = {
-        type: FIND,
-        _id    
-    }
     return action;
 }
 

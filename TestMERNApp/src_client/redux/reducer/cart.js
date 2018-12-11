@@ -20,7 +20,8 @@ const cart = (state=initialState, action) => {
         case CART: 
             return {products: products, addresses: addresses, payments: payments};
         case ADD:
-            return {products: [...products,...action.add] , addresses: addresses, payments: payments};
+            console.log(action.add);
+            return {products: [...products, action.add] , addresses: addresses, payments: payments};
         case REMOVE: 
             return {products: products, addresses: addresses, payments: payments};
         default: 

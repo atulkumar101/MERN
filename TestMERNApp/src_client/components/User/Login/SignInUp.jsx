@@ -6,7 +6,7 @@ import SocialSignIn from './SocialSignIn';
 import Error from '../../Error/Error';
 
 import {login, register} from '../../../assets/util/fetch';
-import {setLocalStorage, getLocalStorage} from '../../../assets/util/cookie';
+import {setLocalStorage} from '../../../assets/util/localStorage';
 
 class SignInUp extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class SignInUp extends Component {
     login(email, password) 
     .then(success => {
       console.log('success', success);
-      setLocalStorage(success);
+      setLocalStorage('token', success);
       this.setState({success});
     })
     .catch(error => {
@@ -59,7 +59,7 @@ class SignInUp extends Component {
     register(name, email, password) 
     .then(success => {
       console.log('success', success);
-      setLocalStorage(success); 
+      setLocalStorage('token', success); 
       this.setState({success});
     })
     .catch(error => {

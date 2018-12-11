@@ -6,7 +6,6 @@ export const ADD = "ADD";
 export const REMOVE = "REMOVE";
 
 export const PRODUCT = "PRODUCT";
-export const FIND = "FIND";
 export const SORT = "SORT";
 export const FILTER = "FILTER";
 

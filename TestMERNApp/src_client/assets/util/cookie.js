@@ -1,23 +1,3 @@
-export function getLocalStorage() {
-    const token = localStorage.getItem('token')?localStorage.getItem('token'):'';
-    return token;
-}
-
-export function setLocalStorage(token) {
-    localStorage.setItem('token', token);
-}
-
-export function removeLocalStorage() {
-    localStorage.removeItem('token');
-}
-
-export function setCookie(cname,cvalue,exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname + "=" + cvalue + ";" + expires ;
-}
-
 export function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -32,6 +12,15 @@ export function getCookie(cname) {
         }
     }
     return "";
+}
+
+export function setCookie(name,value,day) {
+    var date = new Date();
+    date.setTime(date.getTime() + (day*24*60*60*1000));
+    var expires = "expires=" + date.toUTCString();
+    const cookie = name + "=" + value + ";" + expires + ";" + "HttpOnly" ;
+    console.log(cookie);
+    document.cookie = cookie;
 }
 
 /**
@@ -50,4 +39,8 @@ export function checkCookie() {
            setCookie("username", user, 30);
        }
     }
+}
+
+export function deleteCookie() {
+
 }
