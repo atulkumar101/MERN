@@ -33,10 +33,7 @@ class Home extends React.Component {
     componentDidMount() {
         this.props.apiData();
         this.calculatePagination();
-        loadMore(this.state.skip)
-        .then((success) => console.log('success', success))
-        .catch((error) => console.log('error', error.toString()));
-        document.addEventListener("scroll", this.scroll);
+		document.addEventListener("scroll", this.scroll);
     }
 
     componentWillUnmount() {
@@ -44,29 +41,24 @@ class Home extends React.Component {
     }
 
     scroll() {
-        let x = document.body.scrollHeight - document.body.scrollTop || document.documentElement.scrollHeight - document.documentElement.scrollTop;
-        console.log(x);
-
-        if(x > 400) {
-            x=x+400;
+        let client = document.documentElement.clientHeight;
+		let top = document.documentElement.scrollTop;
+		let height = document.documentElement.scrollHeight - 1000;
+		console.log(client, top, height);
+        if( top > height) {
             loadMore(this.state.skip)
             .then((success) => this.setState({load: [...this.state.load, ...success], skip: this.state.skip+1}))
             .catch((error) => console.log('error', error.toString()));
-            console.log(document.body.scrollTop, document.documentElement.scrollTop);
         }
-        //window.scrollTo(x,y);
     }
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.skip !== prevState.skip) {
-            loadMore(this.state.skip)
-            .then((success) => console.log('success', success))
-            .catch((error) => console.log('error', error.toString()));   
-        }
+		/*
         if (this.state.load !== prevState.load) {
             loadMore(this.state.skip)
             .then((success) => console.log('success', success))
             .catch((error) => console.log('error', error.toString()));   
         }
+		*/
         if (this.props.product.update !== prevProps.product.update) {
             this.calculatePagination();
         }
@@ -106,11 +98,6 @@ class Home extends React.Component {
                 <Pagination products={this.state.product} totalPage={this.state.totalPage} currentPage={this.state.currentPage} pagination={this.pagination} {...this.props}/>
                 
                 <Products products={this.state.load} {...this.props} />
-
-                <button type="button" onClick={()=> {
-                    const skip=this.state.skip+1;
-                    this.setState({skip});
-                }}>Load More</button>
             </div>
         )
     }
