@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import logo from '../../logo.svg';
 import {HOME_URL, ADMIN_URL, LOGIN_URL, LOGOUT_URL, CART_URL, PROFILE_URL, ACCOUNT_URL} from '../../assets/constant';
 
+import {NavLink} from 'react-router-dom';
+
 class Header extends React.Component {
     render() {
         return(
@@ -14,8 +16,8 @@ class Header extends React.Component {
                             <a className="navbar-brand" href="javascript:void(0);"><img src={logo} className="logo" alt="logo" /></a>
                         </div>
                         <ul className="nav navbar-nav">
-                            <li className="active"><a href="javascript:void(0);" onClick={()=> {this.props.history.push(HOME_URL);}}>Home</a></li>
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(ADMIN_URL);}}>Admin</a></li>
+                            <li><NavLink exact to={HOME_URL} activeClassName="active">Home</NavLink></li>
+                            <li><NavLink exact to={ADMIN_URL} activeClassName="active">Admin</NavLink></li>
                         </ul>
                         <form className="navbar-form navbar-left" action="/">
                             <div className="input-group">
@@ -28,13 +30,13 @@ class Header extends React.Component {
                             </div>
                         </form>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(CART_URL);}}><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></a></li>
-                            <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(LOGIN_URL);}}><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><NavLink exact to={CART_URL} activeClassName="active"><span className="glyphicon glyphicon-shopping-cart"></span><span className="badge">{this.props.cart.length}</span></NavLink></li>
+                            <li><NavLink exact to={LOGIN_URL} activeClassName="active"><span className="glyphicon glyphicon-log-in"></span></NavLink></li>
                             <li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-user"></span><span className="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(PROFILE_URL);}}>Profile</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(ACCOUNT_URL);}}>Account</a></li>
-                                    <li><a href="javascript:void(0);" onClick={()=> {this.props.history.push(LOGOUT_URL);}}>Logout</a></li>
+                                    <li><NavLink exact to={PROFILE_URL} activeClassName="active">Profile</NavLink></li>
+                                    <li><NavLink exact to={ACCOUNT_URL} activeClassName="active">Account</NavLink></li>
+                                    <li><NavLink exact to={LOGOUT_URL} activeClassName="active">LogOut</NavLink></li>
                                 </ul>
                             </li>
                         </ul>

@@ -10,8 +10,7 @@ import {apiData} from '../redux/action/product';
 import Select from '../components/Select';
 import Products from '../components/Product/Products';
 import Pagination from '../components/Pagination';
-import Login from '../components/Material-UI/Login/SignIn';
-
+import Loading from '../components/Loading/Loading';
 import withPaginator from '../HOC/withPaginator';
 
 const ProductsHOC = withPaginator(Products);
@@ -47,7 +46,11 @@ class Home extends React.Component {
 		console.log(client, top, height);
         if( top > height) {
             loadMore(this.state.skip)
-            .then((success) => this.setState({load: [...this.state.load, ...success], skip: this.state.skip+1}))
+            .then((success) => {
+                const load = [...this.state.load, ...success];
+                const skip = this.state.skip+1;
+                this.setState({load, skip});
+            })
             .catch((error) => console.log('error', error.toString()));
         }
     }
@@ -94,11 +97,13 @@ class Home extends React.Component {
                 */}
                 <Select />
                 
-                <Products products={this.state.product} {...this.props}/>
                 <Pagination products={this.state.product} totalPage={this.state.totalPage} currentPage={this.state.currentPage} pagination={this.pagination} {...this.props}/>
-                
+
+                <Products products={this.state.product} {...this.props}/>
+
+
                 <Products products={this.state.load} {...this.props} />
-            </div>
+                </div>
         )
     }
 }

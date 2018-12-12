@@ -93,7 +93,7 @@ class SignInUp extends Component {
         <hr/>
         <SocialSignIn />
         <br/>
-        <p>By signing in, you agree to our <a>Terms of Service</a> and <a>Privacy Policy</a>.</p>  
+        <p>By signing in, you agree to our <b>Terms of Service</b> and <b>Privacy Policy</b>.</p>  
       </div>
     );
   }
