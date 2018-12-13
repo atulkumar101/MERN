@@ -19,7 +19,7 @@ class Header extends React.Component {
                             <li><NavLink exact to={HOME_URL} activeClassName="active">Home</NavLink></li>
                             <li><NavLink exact to={ADMIN_URL} activeClassName="active">Admin</NavLink></li>
                         </ul>
-                        <form className="navbar-form navbar-left" action="/">
+                        <form className="navbar-form navbar-left" action="javascript:void(0)">
                             <div className="input-group">
                                 <input type="text" className="form-control" placeholder="Search" name="search" />
                                 <div className="input-group-btn">

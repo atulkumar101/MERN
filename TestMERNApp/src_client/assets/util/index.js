@@ -1,4 +1,5 @@
 import {PRODUCT_LIMIT} from '../constant';
+import './fetch';
 
 export function calculateTotalPrice(products) {
     let total=0;
@@ -27,7 +28,6 @@ export function calculateTotalProduct(n, totalProduct) {
     }
     return product;
 }
-
 
 
 

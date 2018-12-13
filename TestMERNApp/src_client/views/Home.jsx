@@ -2,16 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import { apiData } from '../redux/action/product';
+
+import {Select, Products, Pagination} from '../components';
+import {withPaginator} from '../HOC';
+
 import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/util';
 import { loadMore } from '../assets/util/fetch';
-
-import {apiData} from '../redux/action/product';
-
-import Select from '../components/Select';
-import Products from '../components/Product/Products';
-import Pagination from '../components/Pagination';
-import Loading from '../components/Loading/Loading';
-import withPaginator from '../HOC/withPaginator';
 
 const ProductsHOC = withPaginator(Products);
 const PaginationHOC = withPaginator(Pagination);
@@ -39,11 +36,16 @@ class Home extends React.Component {
         document.removeEventListener("scroll", this.scroll);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.product.update !== prevProps.product.update) {
+            this.calculatePagination();
+        }
+    }
+
     scroll() {
         let client = document.documentElement.clientHeight;
 		let top = document.documentElement.scrollTop;
 		let height = document.documentElement.scrollHeight - 1000;
-		console.log(client, top, height);
         if( top > height) {
             loadMore(this.state.skip)
             .then((success) => {
@@ -52,18 +54,6 @@ class Home extends React.Component {
                 this.setState({load, skip});
             })
             .catch((error) => console.log('error', error.toString()));
-        }
-    }
-    componentDidUpdate(prevProps, prevState) {
-		/*
-        if (this.state.load !== prevState.load) {
-            loadMore(this.state.skip)
-            .then((success) => console.log('success', success))
-            .catch((error) => console.log('error', error.toString()));   
-        }
-		*/
-        if (this.props.product.update !== prevProps.product.update) {
-            this.calculatePagination();
         }
     }
 
@@ -101,7 +91,6 @@ class Home extends React.Component {
 
                 <Products products={this.state.product} {...this.props}/>
 
-
                 <Products products={this.state.load} {...this.props} />
                 </div>
         )
@@ -119,18 +108,3 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);
 
-/*
-isUserLoggedIn() {
-    console.log('isUserLoggedIn()');
-    if(this.state.email!='')
-    {
-    return true;
-    }
-    else if(this.state.email=='') {
-    return false;
-    }
-    else {
-    return null;
-    }
-}
-*/

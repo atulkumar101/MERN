@@ -170,3 +170,25 @@ export function onSignIn(googleUser) {
         console.log(error);
     }); 
 };
+
+/*
+response.ok
+response.statusText
+response.status
+response.headers.get('Content-Type')
+response.url
+
+response.text()
+response.json()
+response.formData()
+response.blob() //URL.createObjectURL(object)
+
+resolve  HTTP error status but ok=false
+reject Network Failure or If anything prevented the request from completing (DNS lookup failure)
+
+var formData = new FormData();
+var fileField = document.querySelector("input[type='file']");
+formData.append('username', 'abc123');
+formData.append('avatar', fileField.files[0]);
+//JSON.stringify
+ */

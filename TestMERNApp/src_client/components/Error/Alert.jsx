@@ -1,6 +1,6 @@
 import React from 'react';
  
-class Error extends React.Component {
+class Alert extends React.Component {
     render() {
         return(
             <React.Fragment>
@@ -33,4 +33,4 @@ class Error extends React.Component {
     }
 }
 
-export default Error;
+export default Alert;

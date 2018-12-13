@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {addToCart} from '../../redux/action/cart';
 import {search} from '../../assets/util/fetch'; 
 
-import PrintStar from '../PrintStar';
+import PrintStar from '../common/PrintStar';
 
 class ProductDetail extends Component {
     constructor(props) {

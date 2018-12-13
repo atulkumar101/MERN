@@ -18,3 +18,21 @@ class SocialSignIn extends React.Component {
 }
 
 export default SocialSignIn;
+
+/*
+if (auth2.isSignedIn.get()) {
+    var profile = auth2.currentUser.get().getBasicProfile();
+    console.log('ID: ' + profile.getId());
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+}
+
+ <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>">Click here</a> to begin!</a>
+
+ https://developer.github.com/v3/guides/basics-of-authentication/
+
+ https://github.com/github/platform-samples/tree/master/api/javascript/es2015-nodejs/recipes
+*/

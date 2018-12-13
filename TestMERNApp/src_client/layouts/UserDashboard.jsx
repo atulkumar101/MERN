@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 //import PropTypes from "prop-types";
 
-import ErrorBoundary from '../components/Error/ErrorBoundary';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import {Header, ErrorBoundary, Footer} from '../components';
 
 import userRoutes from '../routes/user';
 

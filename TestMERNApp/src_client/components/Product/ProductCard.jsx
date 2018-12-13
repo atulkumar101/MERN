@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PrintStar from '../PrintStar'; 
+import PrintStar from '../common/PrintStar'; 
 
 class ProductCard extends React.Component {
     constructor(props) {

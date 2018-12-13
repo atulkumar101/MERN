@@ -4,7 +4,10 @@ class SignIn extends React.Component {
     render() {
         return (
             <div id="signin" className="tab-pane fade in active">
-                <form onSubmit={event=>{event.preventDefault();}}>
+                <form onSubmit={
+                        (event) => this.props.signIn(event)
+                        //event=>{event.preventDefault();}
+                    }>
                     <br/>
                     <div className="input-group">
                         <span className="input-group-addon"><i className="glyphicon glyphicon-envelope"></i></span>
@@ -20,8 +23,7 @@ class SignIn extends React.Component {
                             onChange={(event) => this.props.onInputChange(event) }/>
                     </div>
                     <br/>
-                    <button type="submit" className="btn btn-success"
-                        onClick={() => this.props.signIn()}>Sign In</button>
+                    <button type="submit" className="btn btn-success">Sign In</button>
                 </form>
            </div>
         )

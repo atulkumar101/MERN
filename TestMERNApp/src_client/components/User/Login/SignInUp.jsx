@@ -3,7 +3,7 @@ import  React, {Component} from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import SocialSignIn from './SocialSignIn';
-import Error from '../../Error/Error';
+import Error from '../../Error/Alert';
 
 import {login, register} from '../../../assets/util/fetch';
 import {setLocalStorage} from '../../../assets/util/localStorage';
@@ -33,11 +33,12 @@ class SignInUp extends Component {
     this.setState({ [inputName]: inputValue });
   }
 
-  signIn() {
+  signIn(event) {
     /*
     this.inpEmail.current.focus();
     this.props.history.push('/');
     */
+    event.preventDefault();
     const {email, password} = this.state;
     this.setState({error:'', success:'' , warning: ''})
     //console.log('signIn()', email, password);
@@ -52,7 +53,8 @@ class SignInUp extends Component {
       this.setState({error});
     });
   }
-  signUp() {
+  signUp(event) {
+    event.preventDefault();
     const {name, email, password} = this.state;
     this.setState({error:'', success:'' , warning: ''})
     //console.log('signUp()', name, email, password);
@@ -80,15 +82,6 @@ class SignInUp extends Component {
           <SignIn onInputChange={this.onInputChange} signIn={this.signIn} />
           <SignUp onInputChange={this.onInputChange} signUp={this.signUp} /> 
         </div>
-        {
-            //has-success has feedback
-            //has-success
-            //<span className="glyphicon glyphicon-ok form-control-feedback"></span>
-            //has-warning
-            //<span className="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-            //has-error
-            //<span className="glyphicon glyphicon-remove form-control-feedback"></span>
-        }
         <Error warning={this.state.warning} error={this.state.error} success={this.state.success} />
         <hr/>
         <SocialSignIn />
@@ -101,4 +94,10 @@ class SignInUp extends Component {
 
 export default SignInUp;
 
- 
+//has-success has feedback
+//has-success
+//<span className="glyphicon glyphicon-ok form-control-feedback"></span>
+//has-warning
+//<span className="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+//has-error
+//<span className="glyphicon glyphicon-remove form-control-feedback"></span>
