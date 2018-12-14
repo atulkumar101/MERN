@@ -9,7 +9,7 @@ export const PRODUCT = "PRODUCT";
 export const SORT = "SORT";
 export const FILTER = "FILTER";
 
-export const BASE_URL = "http://localhost:8090";
+export const BASE_URL = "http://172.18.2.40:8090";
 /**
  * POST
  */

@@ -13,16 +13,18 @@ function withPaginator(WrappedComponent) {
                 currentPage: 1,
                 product: []
             };
+            this.handleChange = this.handleChange.bind(this);
         }
+
         componentDidMount() {
             this.calculatePagination();
-            //console.log('withPaginator props',this.props);
         }
         componentDidUpdate(prevProps, prevState) {
             if (this.props.product.update !== prevProps.product.update) {
                 this.calculatePagination();
-                //console.log('Update withPaginator props',this.props);
             }
+        }
+        componentWillMount() {
         }
         calculatePagination() {
             const page = calculateTotalPage(this.props.product.update.length); 

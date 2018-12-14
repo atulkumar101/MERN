@@ -4,14 +4,11 @@ import {bindActionCreators} from 'redux';
 
 import { apiData } from '../redux/action/product';
 
-import {Select, Products, Pagination} from '../components';
-import {withPaginator} from '../HOC';
+import { Select, Products, Pagination} from '../components';
+//import { Pagination, Products } from '../HOC';
 
-import { calculateTotalPage, createPagination, calculateTotalProduct } from '../assets/util';
-import { loadMore } from '../assets/util/fetch';
+import { calculateTotalPage, createPagination, calculateTotalProduct, loadMore } from '../assets/util';
 
-const ProductsHOC = withPaginator(Products);
-const PaginationHOC = withPaginator(Pagination);
 
 class Home extends React.Component {
     constructor(props) {
@@ -82,8 +79,8 @@ class Home extends React.Component {
         return(
             <div>
                 {/*
-                <ProductsHOC {...this.props}/>
-                <PaginationHOC {...this.props}/>
+                <Products {...this.props}/>
+                <Pagination {...this.props}/>
                 */}
                 <Select />
                 
@@ -92,7 +89,7 @@ class Home extends React.Component {
                 <Products products={this.state.product} {...this.props}/>
 
                 <Products products={this.state.load} {...this.props} />
-                </div>
+            </div>
         )
     }
 }
