@@ -13,50 +13,57 @@ import {HOME_URL, ADMIN_URL, PRODUCT_URL, CART_URL, PROFILE_URL, ACCOUNT_URL, LO
 
 const userRoutes = [
     {
-        path: HOME_URL,
+        auth: false,
         name: "Home",
-        component: Home
+        path: HOME_URL,
+        component: Home,
     },
     {
-        path: ADMIN_URL, 
+        auth: false,
         name: "Admin", 
+        path: ADMIN_URL, 
         component: Admin
     },
     {
-        path: PRODUCT_URL,
+        auth: false,
         name: "Product",
+        path: PRODUCT_URL,
         component: ProductDetail
     },
-    {
-        path: CART_URL,
+    {   
+        auth: false,
         name: "Cart",
-        component: Checkout
+        path: CART_URL,
+        component: Checkout,
     },
     {
-        path: PROFILE_URL,
+        auth: true,
         name: "Profile",
+        path: PROFILE_URL,
         component: Profile
     },
     {
-        path: ACCOUNT_URL,
+        auth: true,
         name: "Account",
+        path: ACCOUNT_URL,
         component: Account
     },
     {
-        path: LOGIN_URL,
+        auth: false,
         name: "Login",
+        path: LOGIN_URL,
         component: SignInUp
     },
     {
-        path: LOGOUT_URL,
+        auth: true,
         name: "Logout",
+        path: LOGOUT_URL,
         component: SignOut
     },
     { 
         redirect: true, 
         path: DEFAULT_URL, 
-        to: HOME_URL, 
-        name: "Home" 
+        to: HOME_URL,  
     }
 ];
 

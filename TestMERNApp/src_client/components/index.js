@@ -1,5 +1,7 @@
 export { default as Header } from './Header/Header';
 
+export { default as Error404 } from './Error/Error404';
+
 export { default as ErrorBoundary } from './Error/ErrorBoundary';
 
 export { default as Select } from './common/Select';

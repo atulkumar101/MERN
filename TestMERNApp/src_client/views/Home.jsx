@@ -24,7 +24,7 @@ class Home extends React.Component {
         this.scroll = this.scroll.bind(this);
     }
     componentDidMount() {
-        this.props.apiData();
+        this.props.actions.apiData();
         this.calculatePagination();
 		document.addEventListener("scroll", this.scroll);
     }
@@ -95,12 +95,12 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return ({
+    return {
         product: state.product
-    });
+    }
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({apiData}, dispatch);
+    return {actions: bindActionCreators({apiData}, dispatch)};
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

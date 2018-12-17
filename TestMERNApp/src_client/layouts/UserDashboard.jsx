@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 //import PropTypes from "prop-types";
 
 import {Header, ErrorBoundary, Footer} from '../components';
-
+import {withAuth} from '../HOC';
 import userRoutes from '../routes/user';
 
 class UserDashboard extends Component {
@@ -18,12 +18,16 @@ class UserDashboard extends Component {
           <Switch>
             
             {userRoutes.map((prop, key) => {
-              if (prop.redirect)
+              if(prop.redirect)
                 return <Redirect from={prop.path} to={prop.to} key={key} />;
+              if(prop.auth)
+                return (
+                  <Route path={prop.path} component={withAuth(prop.component)} key={key} />
+                );
               return (
-                <Route path={prop.path} component={prop.component} key={key} />
-              );
-            })}
+                <Route path={prop.path} component={prop.component} key={key} />                
+              )
+            })}               
 
           </Switch>
         </ErrorBoundary>

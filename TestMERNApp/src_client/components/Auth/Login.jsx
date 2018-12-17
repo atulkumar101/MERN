@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  Redirect
+} from "react-router-dom";
+
+import {fakeAuth} from './fakeAuth';
 
 class Login extends React.Component {
   state = { redirectToReferrer: false };
@@ -11,7 +16,7 @@ class Login extends React.Component {
   render() {
     let { from } = this.props.location.state ||  { from: { pathname: "/" } };
     let { redirectToReferrer } = this.state;
-
+    console.log(from, redirectToReferrer);
     if(redirectToReferrer) return <Redirect to={from} />;
     return (
       <div>

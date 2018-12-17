@@ -8,6 +8,10 @@ export const REMOVE = "REMOVE";
 export const PRODUCT = "PRODUCT";
 export const SORT = "SORT";
 export const FILTER = "FILTER";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const LOGOUT = "LOGOUT";
 
 export const BASE_URL = "http://172.18.2.40:8090";
 /**
